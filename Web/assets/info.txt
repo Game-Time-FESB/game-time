@@ -1,0 +1,12 @@
+font za svaki teskt: Roboto Medium
+font u logou: Passion One
+
+Boje:
+zelena: #87dba6ff
+tamno plava na logou: #0e0027ff
+bila za tekst: #f6f6f6ff
+background svitlija: #1d1d2bff
+background tamnija: #070013ff
+ljubičasta za ne bijeli tekst: #53537aff
+
+//boje su napisane u RGBA, ako van ne radi samo maknite ffsa kraja

@@ -39,3 +39,222 @@ Medium:
 - spacing system (px)
 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128    
 */
+
+/* NARCO ASSESTS */
+
+/* font za svaki teskt: Roboto Medium
+font u logou: Passion One
+
+Boje:
+zelena: #87dba6ff
+tamno plava na logou: #0e0027ff
+bila za tekst: #f6f6f6ff
+background svitlija: #1d1d2bff
+background tamnija: #070013ff
+ljubičasta za ne bijeli tekst: #53537aff
+Border color: #4b4b4b
+
+//boje su napisane u RGBA, ako van ne radi samo maknite ffsa kraja */
+
+/* MOBILE VERSION DEFAULT */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* font-size: 10px; */
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #f6f6f6ff;
+  background-color: #1d1d2bff;
+}
+
+.container {
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+/* HEADER SECTION */
+.navbar-row {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #f6f6f6ff;
+  background-color: #070013ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem 1rem 2rem;
+}
+
+.search-btn {
+  padding: 1rem 0 1rem 1rem;
+}
+
+.search-btn img {
+  display: block;
+  width: 3rem;
+  height: 3rem;
+}
+
+.amateur-section {
+  font-size: 1.7rem;
+  color: #f6f6f6ff;
+  background-color: #1d1d2bff;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem 1rem 2rem;
+  height: 9rem;
+}
+
+.league-text {
+  align-self: flex-end;
+}
+
+.league-text h2 {
+  font-size: 1.7rem;
+  padding: 1rem 1rem 0 0;
+}
+
+.amateur-btn {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+}
+
+.amateur-btn-text {
+  padding: 1rem;
+}
+
+.switch-icon img {
+  display: block;
+  width: 6rem;
+  height: 3rem;
+}
+
+/* MAIN SECTION */
+main {
+  background-color: #1d1d2bff;
+  padding: 1rem 2rem 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.my-leagues {
+  font-size: 1.5rem;
+  background-color: #070013ff;
+  border-radius: 1.5rem;
+  padding: 1.1rem 1rem 1.1rem 1rem;
+  margin-bottom: 2rem;
+}
+
+.my-league {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  background-color: #070013ff;
+
+  /* border-radius: 1.3rem; */
+  padding: 0.5rem 1rem 0.5rem 1rem;
+}
+
+.my-league-border {
+  border-bottom: 1px solid #4b4b4b;
+  margin-bottom: 0.5rem;
+}
+
+.my-leagues-col1,
+.my-leagues-col2 {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.my-league-icon img,
+.team1-icon img,
+.team2-icon img {
+  display: inline-block;
+  width: 4.2rem;
+  height: 4.2rem;
+}
+
+/* SECTION ALL LEAGUES */
+.all-leagues {
+  /* Dodano zbog footera */
+  margin-bottom: 16.5rem;
+}
+.all-leagues h2 {
+  font-size: 1.7rem;
+  margin-bottom: 2rem;
+}
+
+.country-league-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.8rem;
+  background-color: #070013ff;
+  border-radius: 1.3rem;
+  padding: 1.5rem 1rem 1.5rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.increased-height {
+  padding: 0.25rem;
+}
+
+.country-league-name h4 {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.dropdown-arrow {
+  display: block;
+  color: #f6f6f6ff;
+  stroke: #f6f6f6ff;
+  width: 2.3rem;
+  height: 2.3rem;
+}
+
+.country-league-name button {
+  background-color: transparent;
+  border: none;
+}
+
+.country-league-name .flex-1-col {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.country-img img {
+  width: 6rem;
+  height: 2.3rem;
+}
+
+/* FOOTER SECTION */
+.footer {
+  background-color: #070013ff;
+  padding: 2rem 2rem 2rem 2rem;
+}
+
+.options ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+
+.options ul li a:link,
+.options ul li a:visited {
+  text-decoration: none;
+  color: #f6f6f6ff;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
