@@ -1,10 +1,20 @@
 # * Importing necessary modules from FastAPI, typing and pydantic
 from fastapi import FastAPI, Path, Request, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional
 from pydantic import BaseModel
 
 # * Creating an instance of FastAPI
 app = FastAPI()
+
+# * Fixes the CORS issues
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 # * User class definition with Pydantic BaseModel
@@ -40,7 +50,7 @@ def get_item():
 
 # * Endpoint for logging in
 @app.post("/log-in")
-async def log_in(login: Login):
+def log_in(login: Login):
     # Checking if the provided credentials match any user in the data
     for user in data.values():
         if user["username"] == login.username and user["password"] == login.password:
@@ -52,7 +62,7 @@ async def log_in(login: Login):
 
 # * Endpoint for signing up
 @app.post("/sign-up")
-async def sign_up(user: User):
+def sign_up(user: User):
     try:
         # Creating a new ID for the user
         new_id = max(data.keys()) + 1
