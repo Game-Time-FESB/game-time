@@ -75,10 +75,27 @@ body {
   background-color: #1d1d2bff;
 }
 
+/* Moguce da ovo vise ne treba */
 .container {
+  max-width: 60rem;
+  /* margin: 0 auto; */
+}
+
+/* POPRAVLJENO DA FOOTER BUDE DOLJE */
+.wrapper {
   max-width: 60rem;
   margin: 0 auto;
 }
+
+.flex-content {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+/* ============================KOD======================================= */
 
 /* HEADER SECTION */
 .navbar-row {
@@ -186,8 +203,8 @@ main {
 
 /* SECTION ALL LEAGUES */
 .all-leagues {
-  /* Dodano zbog footera */
-  margin-bottom: 16.5rem;
+  /* Dodano zbog footera (FIXANO SA flex-content divom) */
+  /* margin-bottom: 16.5rem; */
 }
 .all-leagues h2 {
   font-size: 1.7rem;
@@ -238,7 +255,7 @@ main {
   height: 2.3rem;
 }
 
-/* FOOTER SECTION */
+/* FOOTER SECTION, Fix na vrhu klase wrapper i flex-content*/
 .footer {
   background-color: #070013ff;
   padding: 2rem 2rem 2rem 2rem;
