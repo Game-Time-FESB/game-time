@@ -1,5 +1,5 @@
 # * Importing necessary modules from FastAPI, typing and pydantic
-from fastapi import FastAPI, Path, Request, HTTPException
+from fastapi import FastAPI, Path, Request
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional
 from pydantic import BaseModel
@@ -29,6 +29,10 @@ class User(BaseModel):
 class Login(BaseModel):
     username: str  # Username for login
     password: str  # Password for login
+
+
+class Delete(BaseModel):
+    username: str
 
 
 # * Initial data for testing
@@ -78,6 +82,23 @@ def sign_up(user: User):
     except:
         # If there's an error, return sign-up error
         return {"Sign-up": "ERROR"}
+
+
+# * Endpoint for deleting a user
+@app.delete("/delete-user")
+def delete_user(delete: Delete):
+    # Checking if the provided username matches any user in the data
+    for id, user in data.items():
+        if user["username"] == delete.username:
+            # if user is the test user, don't delete it
+            if id == 0:
+                break
+            # If a match is found, delete the user
+            del data[id]
+            return {"Delete": "SUCCESS"}
+
+    # If no match is found, return failed delete
+    return {"Delete": "FAILED", "Info": "bad username"}
 
 
 # * Endpoint for getting all data (just for test)
