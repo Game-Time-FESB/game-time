@@ -3,6 +3,7 @@ from fastapi import FastAPI, Path, Request
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional
 from pydantic import BaseModel
+import json
 
 # * Creating an instance of FastAPI
 app = FastAPI()
@@ -32,18 +33,11 @@ class Login(BaseModel):
 
 
 class Delete(BaseModel):
-    username: str
+    username: str  # Username to delate
 
 
 # * Initial data for testing
-data = {
-    0: {
-        "name": "Test",
-        "surname": "Testic",
-        "username": "test1991",
-        "password": "test123",
-    }
-}
+data = {}
 
 
 # * Default home page -> status check
@@ -68,8 +62,12 @@ def log_in(login: Login):
 @app.post("/sign-up")
 def sign_up(user: User):
     try:
+        # Checking if the username already exists
+        if check_username(user.username):
+            return {"Sign-up": "Error", "info": "username already exists"}
+
         # Creating a new ID for the user
-        new_id = max(data.keys()) + 1
+        new_id = int(max(data.keys())) + 1
         # Adding the new user to the data
         data[new_id] = {
             "name": user.name,
@@ -79,7 +77,9 @@ def sign_up(user: User):
         }
         return {"Sign-up": "COMPLETED"}
 
-    except:
+    except Exception as e:
+        # prints the error out
+        print(e)
         # If there's an error, return sign-up error
         return {"Sign-up": "ERROR"}
 
@@ -104,4 +104,46 @@ def delete_user(delete: Delete):
 # * Endpoint for getting all data (just for test)
 @app.get("/all-data")
 def get_data():
+    return data
+
+
+@app.on_event("shutdown")
+def save_data_on_shutdown():
+    save_data(data)
+
+
+@app.on_event("startup")
+def load_data_on_startup():
+    global data
+    data = load_data()
+
+
+#! ------------------- network unrelated functions (reallocate later)
+
+
+# * Function takes in a username, checks whether it already exists
+def check_username(username: str):
+    # Loop through all users, check for match
+    for user in data.values():
+        if user["username"] == username:
+            return True
+
+    # If theres no match return false
+    return False
+
+
+# * Function takes in data dictionary and stores it into json (optional file name)
+def save_data(data: dict, fileName: str = "user_data"):
+    # open json file based on fileName and save data from dict into it
+    with open(f"Database/{fileName}.json", "w") as file:
+        json.dump(data, file, indent=4)
+
+
+# * Function that loads the json data (from optional file name) into a dictionary
+def load_data(fileName: str = "user_data"):
+    # open json file based on fileName and save data from dict into it
+    with open(f"Database/{fileName}.json", "r") as file:
+        data: dict = json.load(file)
+
+    # returns a dictionary that has data from json file
     return data
