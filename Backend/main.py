@@ -67,7 +67,7 @@ def sign_up(user: User):
             return {"Sign-up": "Error", "info": "username already exists"}
 
         # Creating a new ID for the user
-        new_id = int(max(data.keys())) + 1
+        new_id = str(int(max(data.keys()))) + 1
         # Adding the new user to the data
         data[new_id] = {
             "fullname": user.fullname,
