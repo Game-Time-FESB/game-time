@@ -25,13 +25,13 @@ document.addEventListener('DOMContentLoaded', async function () {
     //   },
     // };
 
-    const resp = await fetch('https://pokeapi.co/api/v2/pokemon-species');
+ /*    const resp = await fetch('https://pokeapi.co/api/v2/pokemon-species');
     const pokemoni = await resp.json();
     console.log(pokemoni);
     pokemoni.results.forEach(function (pokemon) {
       var listItem = document.createElement('li');
       listItem.textContent = pokemon.name;
       collapsUl.appendChild(listItem);
-    });
+    }); */
   });
 });
