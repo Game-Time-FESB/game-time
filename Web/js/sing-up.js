@@ -17,7 +17,7 @@ function submitForm() {
   };
 
   // Send data to the server using Fetch API
-  fetch('http://93.140.130.87:6969/sign-up', {
+  fetch('url/sign-up', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

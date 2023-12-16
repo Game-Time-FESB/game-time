@@ -10,7 +10,7 @@ function getData() {
   };
 
   // Send data to the server using Fetch API
-  fetch('http://93.140.130.87:6969/log-in', {
+  fetch('url/log-in', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
