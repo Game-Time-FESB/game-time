@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/sign-in.css">
+  <title>Menu</title>
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+    <div class="container">
+      <div class="flex-1-col">
+        <div class="navbar-row">
+          <div class="gametime-logo">
+            <img src="./assets/ikone/gtzelenitext.svg" alt="">
+          </div>
+        </div>
+
+        <div class="back-arrow">
+          <a href="./menu.html"><img src="./assets/ikone/strelica_asset.svg" alt=""></a>
+        </div>
+
+
+        <h1>Sign In</h1>
+
+        <form id="sign-in-form">
+          <label for="username">Username:</label><br>
+          <input type="text" id="username" name="username" placeholder="Required"><br>
+
+          <label for="password">Password:</label><br>
+          <input type="password" id="password" name="password" placeholder="Required"><br>
+
+          <button type="button" onclick="getData()">Sign In</button>
+        </form>
+
+        <p>Don't have an account? <a href="./menu_Sign-Up.html">Sign up</a></p>
+
+      </div>
+      <footer class=" footer ">
+        <section class="options">
+          <ul>
+            <li> <a href="./index.html">Matches</a></li>
+            <li><a href="#">Local</a></li>
+            <li><a href="#">MyWatch</a></li>
+            <li><a href="./menu_Sign-In.html">Menu</a></li>
+          </ul>
+        </section>
+      </footer>
+
+    </div>
+
+  </div>
+
+
+  <script src="./js/sign-in.js"></script>
+</body>
+
+</html>
