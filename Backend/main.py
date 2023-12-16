@@ -20,8 +20,8 @@ app.add_middleware(
 
 # * User class definition with Pydantic BaseModel
 class User(BaseModel):
-    name: str  # User's first name
-    surname: str  # User's last name
+    fullname: str  # User's full name
+    email: str  # User's last name
     username: str  # User's username
     password: str  # User's password
 
@@ -70,8 +70,8 @@ def sign_up(user: User):
         new_id = int(max(data.keys())) + 1
         # Adding the new user to the data
         data[new_id] = {
-            "name": user.name,
-            "surname": user.surname,
+            "fullname": user.fullname,
+            "email": user.email,
             "username": user.username,
             "password": user.password,
         }

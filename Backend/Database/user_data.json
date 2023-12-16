@@ -1,14 +1,8 @@
 {
     "0": {
-        "name": "Test",
-        "surname": "Testic",
+        "fullname": "Test Testic",
+        "email": "test@test.com",
         "username": "test1991",
         "password": "test123"
-    },
-    "1": {
-        "name": "Narco",
-        "surname": "Reus",
-        "username": "narco1950",
-        "password": "dinamo"
     }
 }
