@@ -1,6 +1,9 @@
 'use strict';
 
 const heading4CountryName = document.querySelector('.country-name');
+const heading4CountryNameLiAll = document.querySelectorAll('.collapse-ul li');
+
+// console.log(heading4CountryNameLiAll);
 
 const dropdownArrow = window.getComputedStyle(heading4CountryName, '::before');
 const collapsUl = document.querySelector('.collapse-ul');
