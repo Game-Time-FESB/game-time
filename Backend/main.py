@@ -36,7 +36,7 @@ class Delete(BaseModel):
     username: str  # Username to delate
 
 
-# * Initial data for testing
+# * Main dictionary used for temporary storage
 data = {}
 
 
@@ -64,10 +64,10 @@ def sign_up(user: User):
     try:
         # Checking if the username already exists
         if check_username(user.username):
-            return {"Sign-up": "Error", "info": "username already exists"}
+            return {"Sign-up": "ERROR", "info": "username already exists"}
 
         # Creating a new ID for the user
-        new_id = str(int(max(data.keys()))) + 1
+        new_id = str(int(max(data.keys())) + 1)
         # Adding the new user to the data
         data[new_id] = {
             "fullname": user.fullname,
@@ -75,6 +75,11 @@ def sign_up(user: User):
             "username": user.username,
             "password": user.password,
         }
+
+        # Save the changed data to the database
+        save_data(data)
+
+        # Return success
         return {"Sign-up": "COMPLETED"}
 
     except Exception as e:
@@ -95,6 +100,11 @@ def delete_user(delete: Delete):
                 break
             # If a match is found, delete the user
             del data[id]
+
+            # Save the changed data to the database
+            save_data(data)
+
+            # Return success
             return {"Delete": "SUCCESS"}
 
     # If no match is found, return failed delete
