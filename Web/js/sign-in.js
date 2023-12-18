@@ -10,7 +10,7 @@ function getData() {
   };
 
   // Send data to the server using Fetch API
-  fetch('url/log-in', {
+  fetch('url/sign-in', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
