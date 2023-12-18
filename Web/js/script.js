@@ -1,7 +1,7 @@
 'use strict';
 
 const heading4CountryName = document.querySelector('.country-name');
-const heading4CountryNameLiAll = document.querySelectorAll('.collapse-ul li');
+// const heading4CountryNameLiAll = document.querySelectorAll('.collapse-ul li');
 
 // console.log(heading4CountryNameLiAll);
 
@@ -17,18 +17,34 @@ document.addEventListener('DOMContentLoaded', async function () {
       collapsUl.style.display = 'none';
       heading4CountryName.classList.remove('up');
     }
+  });
+  // NOVO ZA DROPDOWN NESTED
+  const heading4Arrow = document.querySelector('.nested-dropdown-arrow');
+  const nestedDropdownHeading4 = document.querySelector('.has-nested-dropdown');
+  // console.log(nestedDropdownHeading4);
+  const collapsUlNested = document.querySelector('.nested-dropdown');
 
-    // Cajin link za fetch triba ovo imat al posli neda jer trazi register
-    // iza url dodat ,options
-    // const options = {
-    //   method: "GET",
-    //   headers: {
-    //     "X-RapidAPI-Key": "SIGN-UP-FOR-KEY",
-    //     "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
-    //   },
-    // };
+  heading4Arrow.addEventListener('click', function () {
+    if (collapsUlNested.style.display === 'none') {
+      collapsUlNested.style.display = 'block';
+      heading4Arrow.classList.add('up');
+    } else {
+      collapsUlNested.style.display = 'none';
+      heading4Arrow.classList.remove('up');
+    }
+  });
 
-    /*    const resp = await fetch('https://pokeapi.co/api/v2/pokemon-species');
+  // Cajin link za fetch triba ovo imat al posli neda jer trazi register
+  // iza url dodat ,options
+  // const options = {
+  //   method: "GET",
+  //   headers: {
+  //     "X-RapidAPI-Key": "SIGN-UP-FOR-KEY",
+  //     "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+  //   },
+  // };
+
+  /*    const resp = await fetch('https://pokeapi.co/api/v2/pokemon-species');
     const pokemoni = await resp.json();
     console.log(pokemoni);
     pokemoni.results.forEach(function (pokemon) {
@@ -36,5 +52,4 @@ document.addEventListener('DOMContentLoaded', async function () {
       listItem.textContent = pokemon.name;
       collapsUl.appendChild(listItem);
     }); */
-  });
 });
