@@ -1,8 +1,12 @@
 # * Importing necessary modules from FastAPI, typing and pydantic
 from fastapi import FastAPI, Path, Request
+from starlette.responses import Response
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional
 from pydantic import BaseModel
+
+# * Imports for storing and handling data
+from cryptography.fernet import Fernet
 import json
 
 # * Creating an instance of FastAPI
@@ -129,14 +133,22 @@ def delete_user(delete: Delete):
     except Exception as e:
         # prints the error out
         print({"Delete ERROR": f"{e}"})
-        #If there's an error, return delete error to front
+        # If there's an error, return delete error to front
         return {"Delete": "ERROR"}
 
 
 # * Endpoint for getting all data (just for test)
 @app.get("/all-data")
-def get_data():
-    return data
+def get_data(passcode: Optional[str] = None):
+    correct_passcode = "secret123"
+
+    # Check if the provided passcode is correct
+    if passcode == correct_passcode:
+        return Response(
+            content=json.dumps(data, indent=4), media_type="application/json"
+        )
+    else:
+        return {"GET DATA": "ERROR", "Info": "Bad passcode"}
 
 
 @app.on_event("shutdown")
