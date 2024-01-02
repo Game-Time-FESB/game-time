@@ -22,7 +22,7 @@ app.add_middleware(
 )
 
 
-# * User class definition with Pydantic BaseModel
+# * User class definition with BaseModel
 class User(BaseModel):
     fullname: str  # User's full name
     email: str  # User's last name
@@ -30,12 +30,21 @@ class User(BaseModel):
     password: str  # User's password
 
 
-# * Login class definition with Pydantic BaseModel
+# * Login class definition with BaseModel
 class SignIn(BaseModel):
     username: str  # Username for login
     password: str  # Password for login
 
 
+# * Update class definition with BaseModel
+class Update(BaseModel):
+    username: str  # Username for identification
+    new_email: Optional[str] = None  # New email for change
+    new_password: Optional[str] = None  # New password to change
+    new_fullname: Optional[str] = None  # New fullname to change
+
+
+# * Delete class definition with BaseModel
 class Delete(BaseModel):
     username: str  # Username to delate
 
@@ -107,6 +116,37 @@ def sign_up(user: User):
         return {"Sign-up": "ERROR"}
 
 
+# * Endpoint for updating user's info
+@app.put("/update-user")
+def update_user(update: Update):
+    try:
+        # Checking if the user with given username exists #! add check test user
+        if not check_username(update.username):
+            return {"Update": "ERROR", "info": "user with given username doesn't exist"}
+
+        # Find data (subdict) for user with given username
+        user = next(
+            user for user in data.values() if user["username"] == update.username
+        )
+
+        # Replace data if given any (make this prettier)
+        user["fullname"] = update.new_fullname if update.new_fullname != None else user["fullname"]
+        user["email"] = update.new_email if update.new_email != None else user["email"]
+        user["password"] = update.new_password if update.new_password != None else user["password"]
+
+        # Save the changed data to the database
+        save_data(data)
+
+        # Return success
+        return {"Update": "SUCCESS"}
+
+    except Exception as e:
+        # prints the error out
+        print({"Update ERROR": f"{e}"})
+        # If there's an error, return update error to front
+        return {"Update": "ERROR"}
+
+
 # * Endpoint for deleting a user
 @app.delete("/delete-user")
 def delete_user(delete: Delete):
@@ -165,7 +205,7 @@ def load_data_on_startup():
 #! ------------------------- network unrelated functions
 
 
-# * Function takes in a username, checks whether it already exists
+# * Function takes in a username, returns True if it exists in DB
 def check_username(username: str):
     # Loop through all users, check for match
     for user in data.values():
