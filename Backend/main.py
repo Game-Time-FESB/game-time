@@ -125,14 +125,20 @@ def update_user(update: Update):
             return {"Update": "ERROR", "info": "user with given username doesn't exist"}
 
         # Find data (subdict) for user with given username
-        user = next(
-            user for user in data.values() if user["username"] == update.username
+        id, user = next(
+            (id, user)
+            for id, user in data.items()
+            if user["username"] == update.username
         )
 
-        # Replace data if given any (make this prettier)
-        user["fullname"] = update.new_fullname if update.new_fullname != None else user["fullname"]
-        user["email"] = update.new_email if update.new_email != None else user["email"]
-        user["password"] = update.new_password if update.new_password != None else user["password"]
+        # Don't allow change for test user
+        if id == "0":
+            return {"Update": "FAILED", "Info": "cannot change info for this user"}
+
+        # Replace data if given any (stays the same if new data is None)
+        user["fullname"] = update.new_fullname or user["fullname"]
+        user["email"] = update.new_email or user["email"]
+        user["password"] = update.new_password or user["password"]
 
         # Save the changed data to the database
         save_data(data)
@@ -155,7 +161,7 @@ def delete_user(delete: Delete):
         for id, user in data.items():
             if user["username"] == delete.username:
                 # if user is the test user, don't delete it
-                if id == 0:
+                if id == "0":
                     break
                 # If a match is found, delete the user
                 del data[id]
