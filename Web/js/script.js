@@ -14,7 +14,7 @@ const collapsUl = document.querySelector('.collapse-ul');
 
 // Za ucitavanje drzava preko apia
 document.addEventListener('DOMContentLoaded', async function () {
-  const countryData = fetch('https://v3.football.api-sports.io/countries', {
+  // const countryData = fetch('https://v3.football.api-sports.io/countries', {
     method: 'GET',
     headers: {
       'x-rapidapi-host': 'v3.football.api-sports.io',
