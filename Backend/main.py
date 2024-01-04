@@ -6,8 +6,22 @@ from typing import Optional
 from pydantic import BaseModel
 
 # * Imports for storing and handling data
-from cryptography.fernet import Fernet
+from cryptography.fernet import Fernet, InvalidToken
+from dotenv import load_dotenv
 import json
+import os
+
+# * Getting the key for data encryption
+load_dotenv()
+
+key = os.getenv("ENCRYPTION_KEY")
+if key is None:
+    print("ERROR - No key")
+else:
+    key = key.encode()
+
+cipher_suite = Fernet(key)
+
 
 # * Creating an instance of FastAPI
 app = FastAPI()
@@ -120,7 +134,7 @@ def sign_up(user: User):
 @app.put("/update-user")
 def update_user(update: Update):
     try:
-        # Checking if the user with given username exists #! add check test user
+        # Checking if the user with given username exists
         if not check_username(update.username):
             return {"Update": "ERROR", "info": "user with given username doesn't exist"}
 
@@ -222,18 +236,35 @@ def check_username(username: str):
     return False
 
 
-# * Function takes in data dictionary and stores it into json (optional file name)
-def save_data(data: dict, fileName: str = "user_data"):
-    # open json file based on fileName and save data from dict into it
-    with open(f"Database/{fileName}.json", "w") as file:
-        json.dump(data, file, indent=4)
-
-
-# * Function that loads the json data (from optional file name) into a dictionary
+# * Function that loads the bin (json if needed) data (from optional file name) into a dictionary
 def load_data(fileName: str = "user_data"):
-    # open json file based on fileName and save data from dict into it
-    with open(f"Database/{fileName}.json", "r") as file:
-        data: dict = json.load(file)
+    try:
+        # Open the binary file and read the encrypted data
+        with open(f"Database/{fileName}.bin", "rb") as file:
+            encrypted_data = file.read()
 
-    # returns a dictionary that has data from json file
+        # Decrypt the data
+        decrypted_data = cipher_suite.decrypt(encrypted_data)
+
+        # Convert the decrypted data from JSON format to a Python dictionary
+        data = json.loads(decrypted_data.decode())
+
+    # If the data is not encrypted, read it as plain JSON from the .json file
+    except (InvalidToken, FileNotFoundError):
+        with open(f"Database/{fileName}.json", "r") as file:
+            data = json.load(file)
+
     return data
+
+
+# * Function that saves the dictionary data into a bin file (with optional file name)
+def save_data(data, fileName: str = "user_data"):
+    # Convert the data from a Python dictionary to JSON format
+    data_string = json.dumps(data).encode()
+
+    # Encrypt the data
+    encrypted_data = cipher_suite.encrypt(data_string)
+
+    # Open the binary file and write the encrypted data
+    with open(f"Database/{fileName}.bin", "wb") as file:
+        file.write(encrypted_data)
