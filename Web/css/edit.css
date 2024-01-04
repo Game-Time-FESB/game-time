@@ -1,0 +1,159 @@
+/* NOVO */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    /* font-size: 10px; */
+    font-size: 62.5%;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    color: #f6f6f6ff;
+    background-color: #1d1d2bff;
+  }
+  
+  .container {
+    max-width: 60rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+  
+  .wrapper {
+    max-width: 60rem;
+    margin: 0 auto;
+  }
+  
+  /* LOGO HEADER */
+  
+  .navbar-row {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #f6f6f6ff;
+    background-color: #070013ff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem 1rem 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .flex-1-col {
+    position: relative;
+    background-color: #070013ff;
+  }
+  
+  .back-arrow {
+    position: absolute;
+    right: 2.5rem;
+    top: 10rem;
+  }
+  
+  .back-arrow img {
+    width: 3.8rem;
+  }
+  
+  .gametime-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .gametime-logo img {
+    width: 40%;
+    color: white;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    margin-top: rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  p {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: justify;
+  }
+
+  .flex-line{
+    padding-left: 2rem;
+  }
+  
+  .flex-line ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    list-style: none;
+  }
+
+  .favourites-navigation ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    list-style: none;
+    padding: 2rem;
+  }
+  
+  .favourites-navigation ul li button{
+    background-color: #070013ff;
+    border:none;
+    color: #f6f6f6ff;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+  .favourites{
+    display:flex;
+    align-items: stretch;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 1rem solid #1d1d2bff;
+    border-radius: 4rem;
+    background-color: #070013ff;
+  }
+
+  .favourites ul{
+    
+    list-style: none;
+    padding: 2rem;
+  }
+
+  .favourites ul li{
+    color: #f6f6f6ff;
+    padding:1rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+  #my-teams, #my-players{
+    display:none;
+  }
+
+  /* FOOTER SECTION, Fix na vrhu klase wrapper */
+  .footer {
+    background-color: #070013ff;
+    padding: 2rem 2rem 2rem 2rem;
+  }
+  
+  .options ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+  }
+  
+  .options ul li a:link,
+  .options ul li a:visited {
+    text-decoration: none;
+    color: #f6f6f6ff;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+  

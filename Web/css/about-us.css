@@ -1,0 +1,112 @@
+/* NOVO */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    /* font-size: 10px; */
+    font-size: 62.5%;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    color: #f6f6f6ff;
+    background-color: #1d1d2bff;
+  }
+  
+  .container {
+    max-width: 60rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+  
+  .wrapper {
+    max-width: 60rem;
+    margin: 0 auto;
+  }
+  
+  /* LOGO HEADER */
+  
+  .navbar-row {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #f6f6f6ff;
+    background-color: #070013ff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem 1rem 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .flex-1-col {
+    position: relative;
+  }
+  
+  .back-arrow {
+    position: absolute;
+    right: 2.5rem;
+    top: 10rem;
+  }
+  
+  .back-arrow img {
+    width: 3.8rem;
+  }
+  
+  .gametime-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .gametime-logo img {
+    width: 40%;
+    color: white;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    margin-top: 10rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  p {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: justify;
+  }
+  
+
+  /*p {
+    font-size: 1.5rem;
+    padding-left: 2rem;
+    text-align: justify;
+  }*/
+  
+
+  /* FOOTER SECTION, Fix na vrhu klase wrapper */
+  .footer {
+    background-color: #070013ff;
+    padding: 2rem 2rem 2rem 2rem;
+  }
+  
+  .options ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+  }
+  
+  .options ul li a:link,
+  .options ul li a:visited {
+    text-decoration: none;
+    color: #f6f6f6ff;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+  

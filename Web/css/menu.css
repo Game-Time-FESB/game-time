@@ -57,21 +57,28 @@ body {
   width: 40%;
   color: white;
 }
-
-.account-container {
+/* dodani svi novi containeri i klase */
+.account-container, .edit-container, .amateur-editor-container, .about-us-container {
   padding-left: 1rem;
   padding-right: 1rem;
 }
 
-.account {
+.account, .edit, .amateur-editor {
   font-size: 2rem;
   color: #f6f6f6ff;
   font-weight: 500;
   padding: 1rem 1rem 1.5rem 0.2rem;
   border-bottom: #070013ff 1px solid;
 }
+/* about-us nesmi imati donji border */
+.about-us {
+  font-size: 2rem;
+  color: #f6f6f6ff;
+  font-weight: 500;
+  padding: 1rem 1rem 1.5rem 0.2rem;
+}
 
-.account a {
+.account a, .edit a, .amateur-editor a, .about-us a{
   display: block;
   text-decoration: none;
   color: #f6f6f6ff;
