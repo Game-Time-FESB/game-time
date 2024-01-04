@@ -1,13 +1,112 @@
 'use strict';
 
+// Kodovi za API
+// Narco kod 1 - a86f3f6be09680dbfff0dbe302e84620
+// Narco kod 2 - 8929fc34ae8055f375d87d4555275302
+// Pb kod 1 - 15a63da56711143f03a2724171b1c8f1
+// Pb kod 2 - e2e128f87080419fac86c79406a98aa3
+
 const heading4CountryName = document.querySelector('.country-name');
-// const heading4CountryNameLiAll = document.querySelectorAll('.collapse-ul li');
-
-// console.log(heading4CountryNameLiAll);
-
+const countryFlag = document.querySelector('.country-img');
+const countryContainer = document.querySelector('.all-leagues');
 const dropdownArrow = window.getComputedStyle(heading4CountryName, '::before');
 const collapsUl = document.querySelector('.collapse-ul');
 
+// Za ucitavanje drzava preko apia
+document.addEventListener('DOMContentLoaded', async function () {
+  const countryData = fetch('https://v3.football.api-sports.io/countries', {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-host': 'v3.football.api-sports.io',
+      'x-rapidapi-key': 'dcaae038ccee033423d5bf4a3ca07a4b',
+    },
+  })
+    .then(response => response.json())
+    .then(data => {
+      data.response.slice(8, 11).forEach(async country => {
+        // console.log(country.name);
+        // heading4CountryName.innerText = country.name;
+
+        const flagResponse = await fetch(
+          `https://media.api-sports.io/flags/${country.code}.svg`
+        );
+        console.log(flagResponse);
+        const flagUrl = flagResponse.url;
+
+        countryContainer.innerHTML += ` 
+                                    <div class="country-league-name">
+
+                                      <div class="flex-1-col">
+                                        <!-- <button><ion-icon class="dropdown-arrow" name="chevron-up-outline"></ion-icon></button> -->
+                                        <h4 class="country-name">${country.name}</h4>
+                                      </div>
+
+                                      <div class="country-img">
+                                        <img src="${flagUrl}" alt="">
+                                      </div>
+                                    </div> 
+          
+                                    <ul class="collapse-ul">
+
+                                    <h4 class=" nested-dropdown-arrow"><img class="league-icon"
+                                    src="	https://api.sofascore.app/api/v1/unique-tournament/8/image" alt="la liga icon">La Liga</h4>
+                                <li class="has-nested-dropdown">
+                                  <ul class="nested-dropdown">
+                                    <li>
+                                      <div class="flex-1-col">
+                  
+                  
+                                        <div class="my-league">
+                                          <div class="my-leagues-col1">
+                  
+                                            <div class="game-time">
+                                              <p>21:00</p>
+                                            </div>
+                                          </div>
+                  
+                                          <div class="my-leagues-col2">
+                                            <div class="team1-icon">
+                                              <img src="https://api.sofascore.app/api/v1/team/2828/image" alt="">
+                                            </div>
+                  
+                                            <div class="team2-icon">
+                                              <img src="https://api.sofascore.app/api/v1/team/2817/image" alt="">
+                                            </div>
+                                          </div>
+                                        </div>
+                  
+                                      </div>
+                  
+                  
+                                      <div class="my-league">
+                                        <div class="my-leagues-col1">
+                  
+                                          <div class="game-time">
+                                            <p>18:30</p>
+                                          </div>
+                                        </div>
+                  
+                                        <div class="my-leagues-col2">
+                                          <div class="team1-icon">
+                                            <img src="https://api.sofascore.app/api/v1/team/2833/image" alt="">
+                                          </div>
+                  
+                                          <div class="team2-icon">
+                                            <img src="https://api.sofascore.app/api/v1/team/2859/image" alt="">
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </li>
+                                    <!-- <li>Item1</li> ZA dodat jos -->
+                  
+                                  </ul>
+                                </li>
+                              </ul>`;
+      });
+    });
+});
+
+// Dropdown glavni
 document.addEventListener('DOMContentLoaded', async function () {
   heading4CountryName.addEventListener('click', async function () {
     if (collapsUl.style.display === 'none') {
@@ -15,9 +114,9 @@ document.addEventListener('DOMContentLoaded', async function () {
       heading4CountryName.classList.add('up');
 
       // novo za api
-      const mainDropdownData = await fetchData();
-      // 'https://v3.football.api-sports.io/leagues?country=England'
-      populateDropdown(collapsUl, mainDropdownData);
+      // const mainDropdownData = await fetchData();
+      // // ('https://v3.football.api-sports.io/leagues?country=England');
+      // populateDropdown(collapsUl, mainDropdownData);
     } else {
       collapsUl.style.display = 'none';
       heading4CountryName.classList.remove('up');
@@ -36,9 +135,9 @@ document.addEventListener('DOMContentLoaded', async function () {
       heading4Arrow.classList.add('up');
 
       //novo za api
-      const nestedDropdownData = await fetchData();
-      // 'https://v3.football.api-sports.io/leagues?country=England'
-      populateDropdown(collapsUlNested, nestedDropdownData);
+      // const nestedDropdownData = await fetchData();
+      // // ('https://v3.football.api-sports.io/leagues?country=England');
+      // populateDropdown(collapsUlNested, nestedDropdownData);
     } else {
       collapsUlNested.style.display = 'none';
       heading4Arrow.classList.remove('up');
@@ -79,15 +178,15 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
   }
 
-  function populateDropdown(dropdown, data) {
-    dropdown.innerHTML = '';
+  // function populateDropdown(dropdown, data) {
+  //   dropdown.innerHTML = '';
 
-    data.response.forEach(league => {
-      const listItem = document.createElement('li');
-      listItem.innerText = league.name;
-      dropdown.appendChild(listItem);
-    });
-  }
+  //   data.response.forEach(league => {
+  //     const listItem = document.createElement('li');
+  //     listItem.innerText = league.name;
+  //     dropdown.appendChild(listItem);
+  //   });
+  // }
 });
 
 /////////////////////////////////////////////////////////////////////
