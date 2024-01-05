@@ -1,6 +1,7 @@
 'use strict';
 
 // Kodovi za API
+// Dario kod - dcaae038ccee033423d5bf4a3ca07a4b
 // Narco kod 1 - a86f3f6be09680dbfff0dbe302e84620
 // Narco kod 2 - 8929fc34ae8055f375d87d4555275302
 // Pb kod 1 - 15a63da56711143f03a2724171b1c8f1
@@ -23,14 +24,34 @@ document.addEventListener('DOMContentLoaded', async function () {
   })
     .then(response => response.json())
     .then(data => {
+      console.log(data);
       data.response.slice(8, 11).forEach(async country => {
         // console.log(country.name);
         // heading4CountryName.innerText = country.name;
 
+        // Dio za fetch lige
+        getLeague(country.code);
+
+        // const leagueResponse = fetch(
+        //   `https://v3.football.api-sports.io/leagues?code=${country.code}`,
+        //   {
+        //     method: 'GET',
+        //     headers: {
+        //       'x-rapidapi-host': 'v3.football.api-sports.io',
+        //       'x-rapidapi-key': 'a86f3f6be09680dbfff0dbe302e84620',
+        //     },
+        //   }
+        // )
+        //   .then(response => response.json())
+        //   .then(data => {
+        //     console.log(data);
+        //   });
+
+        // Flag api
         const flagResponse = await fetch(
           `https://media.api-sports.io/flags/${country.code}.svg`
         );
-        console.log(flagResponse);
+
         const flagUrl = flagResponse.url;
 
         countryContainer.innerHTML += ` 
@@ -106,6 +127,24 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
 });
 
+// Lige api
+async function getLeague(countryCode) {
+  // fetch(`https://v3.football.api-sports.io/leagues?code=${countryCode}`, {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-host': 'v3.football.api-sports.io',
+      'x-rapidapi-key': '8929fc34ae8055f375d87d4555275302',
+    },
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
 // Dropdown glavni
 document.addEventListener('DOMContentLoaded', async function () {
   heading4CountryName.addEventListener('click', async function () {
@@ -143,51 +182,52 @@ document.addEventListener('DOMContentLoaded', async function () {
       heading4Arrow.classList.remove('up');
     }
   });
-
-  // Novo API
-  var myHeaders = new Headers();
-  myHeaders.append('x-rapidapi-key', 'dcaae038ccee033423d5bf4a3ca07a4b');
-  myHeaders.append('x-rapidapi-host', 'v3.football.api-sports.io');
-
-  var requestOptions = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow',
-  };
-
-  fetchData();
-
-  async function fetchData() {
-    try {
-      const response = await fetch(
-        // 'https://v3.football.api-sports.io/leagues?country=England',
-        requestOptions
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      // console.log(data.response[0].country.name);
-      // console.log(data.response.forEach(league => league.name));
-      console.log(data.response[0].league.name);
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  // function populateDropdown(dropdown, data) {
-  //   dropdown.innerHTML = '';
-
-  //   data.response.forEach(league => {
-  //     const listItem = document.createElement('li');
-  //     listItem.innerText = league.name;
-  //     dropdown.appendChild(listItem);
-  //   });
-  // }
 });
+
+// Novo API za dropdown fetch
+var myHeaders = new Headers();
+myHeaders.append('x-rapidapi-key', 'dcaae038ccee033423d5bf4a3ca07a4b');
+myHeaders.append('x-rapidapi-host', 'v3.football.api-sports.io');
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow',
+};
+
+// fetchData();
+
+async function fetchData() {
+  try {
+    const response = await fetch(
+      // 'https://v3.football.api-sports.io/leagues?country=England',
+      requestOptions
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    // console.log(data.response[0].country.name);
+    // console.log(data.response.forEach(league => league.name));
+    console.log(data.response[0].league.name);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// function populateDropdown(dropdown, data) {
+//   dropdown.innerHTML = '';
+
+//   data.response.forEach(league => {
+//     const listItem = document.createElement('li');
+//     listItem.innerText = league.name;
+//     dropdown.appendChild(listItem);
+//   });
+// }
+// });
 
 /////////////////////////////////////////////////////////////////////
 
