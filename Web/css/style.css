@@ -396,3 +396,41 @@ h4,
 
   padding-top: 1rem;
 }
+
+
+/*calendar*/
+
+
+.date {
+  display: flex; 
+  align-items: center;
+}
+
+#dateInput:focus {
+  outline: none;
+  border-color: #070013ff;
+}
+
+/* Style the date input */
+  #dateInput {
+  color-scheme: dark;
+  padding: 10px; 
+  font-size: 1em;
+  border: 1px solid #070013ff;
+  background-color: #070013ff;
+  color: #f6f6f6ff;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Hide text input */
+#dateInput::-webkit-datetime-edit {
+  display: none; 
+}
+
+/* Show calendar icon */
+#dateInput::-webkit-calendar-picker-indicator {
+  display: block;
+}
+
+
