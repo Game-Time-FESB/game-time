@@ -5,4 +5,4 @@
 :: 
 ::
 :: api startup command, logs into terminal for now
-start cmd /k uvicorn main:app --host localhost --port 8000 --reload 2>&1
+start cmd /k uvicorn userApi:app --host localhost --port 8000 --reload 2>&1
