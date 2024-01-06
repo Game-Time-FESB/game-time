@@ -1,0 +1,12 @@
+{
+    "First League": {
+        "league_name": "First League",
+        "country": "Croatia",
+        "city": "Zagreb",
+        "admins": {
+            "1": "admin_one",
+            "2": "admin_two"
+        },
+        "description": "Top level football league in Zagreb, Croatia"
+    }
+}
