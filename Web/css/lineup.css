@@ -1,0 +1,204 @@
+html {
+    /* font-size: 10px; */
+    font-size: 62.5%;
+  }
+
+  
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    color: #f6f6f6ff;
+    background-color: #1d1d2bff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Moguce da ovo vise ne treba */
+  .container {
+    max-width: 60rem;
+    /* margin: 0 auto; */
+    
+  }
+  
+  /* POPRAVLJENO DA FOOTER BUDE DOLJE */
+  .wrapper {
+    max-width: 60rem;
+    margin: 0 auto;
+  }
+  
+  .flex-content {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+
+
+
+.navbar-row {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #f6f6f6ff;
+    background-color: #070013ff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem 1rem 2rem;
+  }
+  
+  .search-btn {
+    padding: 1rem 0 1rem 1rem;
+  }
+  
+  .search-btn img {
+    display: block;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+
+
+  .back-arrow{
+    padding: 1rem 0 1rem 1rem;
+  }
+  
+  .back-arrow img {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+  }
+
+
+  .my-leagues {
+    font-size: 1.5rem;
+    background-color: #070013ff;
+    border-radius: 1.5rem;
+    padding: 1.1rem 1rem 1.1rem 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .game-score {
+    font-size: 2rem;
+    font-weight: 500;
+    justify-content: center;
+  }
+  
+  .my-league {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    background-color: #070013ff;
+  
+    /* border-radius: 1.3rem; */
+    padding: 0.5rem 1rem 0.5rem 1rem;
+  }
+ 
+  
+  .my-leagues-col3 {
+    display: flex;
+    align-items: center;
+}
+
+.my-league-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+  
+  .team1-icon img,
+  .team2-icon img {
+    display: inline-block;
+    width: 6rem;
+    height: 6rem;
+  }
+  
+  .my-league-icon img{
+    display: inline-block;
+    width: 4rem;
+    height: 4rem;
+  }
+
+
+  .top-bar {
+    background-color: #070013ff;
+    padding: 1rem 1rem 1rem 1rem;
+  }
+
+  .footer {
+    background-color: #070013ff;
+    padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+    margin-top: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+
+  
+  .options ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    margin: 0 auto;
+  }
+  
+  .options ul li a:link,
+  .options ul li a:visited {
+    text-decoration: none;
+    color: #f6f6f6ff;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+
+
+  .goals {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    background-color: #070013ff;
+    padding: 0rem 2rem 0rem 2rem;
+}
+
+.goals-border {
+    margin-top: 1.5rem;
+    margin-right: -2rem;
+}
+
+
+
+.goals-col1,.goals-col2 {
+    display: flex;
+    align-items: center;
+}
+
+
+.team-section {
+    text-align: center;
+    margin: 1rem 0;
+    background-color: #070013ff; /* Add the desired background color */
+   padding-top: 1.5rem;
+}
+
+.team-section-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #f6f6f6ff;
+    margin: 0; /* Remove margin for a cleaner look */
+}
+
+
+
+.team-section-bench {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #f6f6f6ff;
+    margin: 0; /* Remove margin for a cleaner look */
+    padding-bottom: 1.5rem;
+}
+
+
+
