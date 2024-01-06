@@ -5,4 +5,4 @@
 :: 
 ::
 :: api startup command, logs into terminal for now
-start cmd /k uvicorn leagueApi:app --host localhost --port 8100 --reload 2>&1
+start cmd /k uvicorn leaguesApi:app --host localhost --port 8100 --reload 2>&1
