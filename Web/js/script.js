@@ -13,6 +13,22 @@ const countryContainer = document.querySelector('.all-leagues');
 const dropdownArrow = window.getComputedStyle(heading4CountryName, '::before');
 const collapsUl = document.querySelector('.collapse-ul');
 
+// test global variabli
+/*
+
+const loggedIn = sessionStorage.getItem('loggedIn') === 'true';
+
+console.log(loggedIn);
+console.log("yo");
+
+
+if (loggedIn) {
+  console.log("ja");
+  //console.log(myUsername);
+}
+
+*/
+
 // Za ucitavanje drzava preko apia
 document.addEventListener('DOMContentLoaded', async function () {
   // const countryData = fetch('https://v3.football.api-sports.io/countries', {
@@ -229,18 +245,6 @@ async function fetchData() {
 // }
 // });
 
-
-
-// test global variabli
-/*
-import { myUsername } from './global.js';
-import { loggedIn } from './global.js';
-
-if (loggedIn) {
-  onsole.log("ja");
-  console.log(myUsername);
-}
-*/
 
 
 /////////////////////////////////////////////////////////////////////

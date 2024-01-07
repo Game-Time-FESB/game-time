@@ -17,7 +17,8 @@ function submitForm() {
   };
 
   // Send data to the server using Fetch API
-  fetch('http://askPbForURL:askPbForPort/sign-up', {
+  //fetch('http://askPbForURL:askPbForPort/sign-up', {
+  fetch('http://1:1/sign-up', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -31,6 +32,11 @@ function submitForm() {
 
       if (data['Sign-up'] === 'COMPLETED') {
         console.log('Sign up successful!');
+
+        sessionStorage.setItem('loggedIn', 'true');
+        sessionStorage.setItem('myUsername', username);
+
+
         window.location.href = 'index.html';
       }
 

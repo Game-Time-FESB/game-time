@@ -1,11 +1,5 @@
 'use strict';
 
-//import { myUsername } from './global.js';
-//import { loggedIn } from './global.js';
-
-
-
-
 function getData() {
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
@@ -16,7 +10,8 @@ function getData() {
   };
 
   // Send data to the server using Fetch API
-  fetch('http://askPbForURL:askPbForPort/sign-in', {
+  //fetch('http://askPbForURL:askPbForPort/sign-in', {
+  fetch('http://1:1/sign-in', {  
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -32,6 +27,10 @@ function getData() {
       if (data['Log-in'] === 'SUCCESS') {
 
         // Store username in global variable
+
+        sessionStorage.setItem('loggedIn', 'true');
+        sessionStorage.setItem('myUsername', username);
+
           //myUsername = username;
           //loggedIn = true;
 
