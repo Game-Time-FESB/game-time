@@ -197,6 +197,33 @@ def delete_user(delete: Delete):
         return {"Delete": "ERROR"}
 
 
+# * Endpoint for getting user info
+@app.get("/user-info")
+def get_info(username: str):
+    try:
+        # Checking if the provided username matches any user in the data
+        for user in data.values():
+            if user["username"] == username:
+                # Copy the user data and remove the password
+                user_data = user.copy()
+                user_data.pop("password", None)
+                # Return users data
+                return Response(
+                    content=json.dumps(user_data, indent=4),
+                    media_type="application/json",
+                )
+
+        # If no match is found, return failed getting info
+        return {"Get Info": "FAILED", "Info": "bad username"}
+
+    # Print out the issue and return error to front
+    except Exception as e:
+        # prints the error out
+        print({"Get Info ERROR": f"{e}"})
+        # If there's an error, return delete error to front
+        return {"Get_info": "ERROR"}
+
+
 # * Endpoint for getting all data (just for test)
 @app.get("/all-data")
 def get_data(passcode: Optional[str] = None):
