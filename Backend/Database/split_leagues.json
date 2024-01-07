@@ -42,6 +42,32 @@
                         "assists": 0
                     }
                 }
+            },
+            "MNK Karepovac": {
+                "league_in": "Stars League Split",
+                "city_in": "Split",
+                "team_name": "MNK Karepovac",
+                "players": {
+                    "Ante Pavić": {
+                        "shirt_number": "13",
+                        "goals": 0,
+                        "assists": 0
+                    }
+                },
+                "description": "Jedan od najačih malonogometnih klubova u regoinu!"
+            },
+            "MNK Juraj": {
+                "league_in": "Stars League Split",
+                "city_in": "Split",
+                "team_name": "MNK Juraj",
+                "players": {
+                    "Ecio Pavelić": {
+                        "shirt_number": "12",
+                        "goals": 0,
+                        "assists": 0
+                    }
+                },
+                "description": "Jedan od hrvatskih velikanskih klubova!"
             }
         },
         "matches": {
