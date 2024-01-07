@@ -40,6 +40,21 @@ class NewTeam(BaseModel):
     description: Optional[str]  # Description of the team
 
 
+# * New match class definition with BaseModel
+class NewMatch(BaseModel):
+    league_in: str  # Name of the league in which the match is played
+    city_in: str  # Name of the city in which the match is played
+    home_team: str  # Name of the home team
+    away_team: str  # Name of the away team
+    date: str  # Date of the match
+    time: str  # Time of the match
+    goals_home: int  # Number of goals scored by the home team
+    goals_home_info: dict  # Information about the goals scored by the home team
+    goals_away: int  # Number of goals scored by the away team
+    goals_away_info: dict  # Information about the goals scored by the away team
+    finished: bool  # Boolean indicating whether the match has finished or not
+
+
 # * Main dictionary used for temporary storage
 data = {}
 
