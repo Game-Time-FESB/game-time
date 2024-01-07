@@ -229,6 +229,20 @@ async function fetchData() {
 // }
 // });
 
+
+
+// test global variabli
+/*
+import { myUsername } from './global.js';
+import { loggedIn } from './global.js';
+
+if (loggedIn) {
+  onsole.log("ja");
+  console.log(myUsername);
+}
+*/
+
+
 /////////////////////////////////////////////////////////////////////
 
 // API SA POKEMONIMA TESTNI

@@ -17,7 +17,7 @@ function submitForm() {
   };
 
   // Send data to the server using Fetch API
-  fetch('url/sign-up', {
+  fetch('http://askPbForURL:askPbForPort/sign-up', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -28,6 +28,33 @@ function submitForm() {
     .then(data => {
       // Handle the response from the server as needed
       console.log('Server response:', data);
+
+      if (data['Sign-up'] === 'COMPLETED') {
+        console.log('Sign up successful!');
+        window.location.href = 'index.html';
+      }
+
+      // if not, display why the login failed
+      else {
+        const form = document.getElementById('sign-up-form');
+        const displayMsg = document.createElement('p');
+        displayMsg.id = 'displayMsg';
+       
+        console.log(data['info']);
+
+        displayMsg.textContent = data['info'];
+
+        // Append paragraph after form
+        form.after(displayMsg); 
+
+        // Remove after 2 seconds
+        setTimeout(() => {
+          displayMsg.remove();
+        }, 4000);
+
+      }
+
+
     })
     .catch(error => {
       console.error('Error:', error);
