@@ -70,6 +70,7 @@
   }
   
   h1 {
+    padding-left: 2rem;
     font-size: 3rem;
     margin-top: 10rem;
     margin-bottom: 2.5rem;
@@ -79,6 +80,8 @@
     font-size: 1.8rem;
     margin-bottom: 2rem;
     text-align: justify;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
   
 
