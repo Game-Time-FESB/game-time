@@ -18,7 +18,7 @@ function submitForm() {
 
   // Send data to the server using Fetch API
   //fetch('http://askPbForURL:askPbForPort/sign-up', {
-  fetch('http://1:1/sign-up', {
+  fetch('http://1:9/sign-up', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
