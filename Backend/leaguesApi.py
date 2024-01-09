@@ -161,6 +161,67 @@ def add_team(new_team: NewTeam):
         return {"Add Team": "ERROR", "Info": "League not found"}
 
 
+# * Endpoint for adding a new match to a league
+@app.post("/add-match")
+def add_match(new_match: NewMatch):
+    # Convert the NewMatch object to a dictionary
+    match_dict = new_match.dict()
+
+    # Define the filename based on the city
+    filename = f"Database/{(new_match.city_in).lower()}_leagues.json"
+
+    # Initialize an empty dictionary for data
+    data = {}
+
+    # Check if the file exists
+    if os.path.exists(filename):
+        # Load the data from the file
+        with open(filename, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        # Check if the league's name exists
+        if new_match.league_in in data.keys():
+            # Check if the 'matches' key exists
+            if "matches" in data[new_match.league_in].keys():
+                # Generate a unique match id
+                match_id = str(len(data[new_match.league_in]["matches"]) + 1)
+
+                # Check if the match id already exists
+                if match_id in data[new_match.league_in]["matches"].keys():
+                    return {"Add Match": "FAILED", "Info": "Match already exists"}
+
+                # Use the match_id as the key and store the match_dict in league's 'matches' data
+                data[new_match.league_in]["matches"][match_id] = match_dict
+
+                # Store the data back to the file
+                with open(filename, "w", encoding="utf-8") as f:
+                    json.dump(data, f, ensure_ascii=False, indent=4)
+
+                # Clear the temp dict
+                data = {}
+
+                # Return a success message
+                return {
+                    "Add Match": "SUCCESS",
+                    "Info": "Match successfully added to the league",
+                }
+
+            else:
+                # If the 'matches' key doesn't exist, return an error message
+                return {
+                    "Add Match": "ERROR",
+                    "Info": "'matches' key not found in the league",
+                }
+
+        else:
+            # If the league doesn't exist, return an error message
+            return {"Add Match": "ERROR", "Info": "League not found"}
+
+    else:
+        # If the file doesn't exist, return an error message
+        return {"Add Match": "ERROR", "Info": "File with data not found"}
+
+
 # * Endpoint for getting all data (just for test)
 @app.get("/all-data")
 def get_data(city: str):
