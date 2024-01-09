@@ -4,8 +4,6 @@
 sessionStorage.setItem('urlPB', '9');
 sessionStorage.setItem('portPB', '6');
 
-
-
 // test global variabli
 /*
 
@@ -82,13 +80,10 @@ if (storedData || storedDataLeagues) {
   const jsonDataLeagues = JSON.parse(storedDataLeagues);
   // Data from fetch ready to use
   console.log(jsonData);
-  console.log(jsonDataLeagues);
-  // Napravit dropdown da radi i stavit gori u funkciju
-  jsonData.response.slice(8, 11).forEach(async country => {
-    // console.log(country.name);
-    // console.log(country.code);
-    fetchLeague(country.code);
+  console.log(jsonDataLeagues); //Stored leagues inside array
 
+  // Napravit dropdown da radi i stavit gori u funkciju
+  jsonData.response.slice(8, 11).forEach(country => {
     // 2 nacin kreiranja elemenata
     const countryElement = document.createElement('div');
     countryElement.className = 'country-league-container';
@@ -116,31 +111,45 @@ if (storedData || storedDataLeagues) {
 
     countryElement.appendChild(countryNameSection);
 
-    // Create nested dropdown section
-    const nestedDropdownSection = document.createElement('ul');
-    nestedDropdownSection.className = 'collapse-ul';
+    // console.log(country.name);
+    // console.log(country.code);
+    fetchLeague(country.code);
+    // Uzete lige za ove 3 drzave i stavljene u array
+    // Loopat kroz njih i napravit dom novi
+    jsonDataLeagues.forEach(league => {
+      if (league.parameters.code === country.code) {
+        // console.log(league);
+        // console.log(league.response[0].league.name);
+        const leagueName = league.response[0].league.name;
+        const leagueFlag = league.response[0].league.logo;
 
-    const nestedDropdownHeader = document.createElement('h4');
-    nestedDropdownHeader.className = 'nested-dropdown-arrow';
-    nestedDropdownHeader.innerHTML = `<img class="league-icon" src="https://api.sofascore.app/api/v1/unique-tournament/8/image" alt="la liga icon">${country.name}`;
+        // Create nested dropdown section
+        const nestedDropdownSection = document.createElement('ul');
+        nestedDropdownSection.className = 'collapse-ul';
 
-    const nestedDropdownItem = document.createElement('li');
-    nestedDropdownItem.className = 'has-nested-dropdown';
+        const nestedDropdownHeader = document.createElement('h4');
+        nestedDropdownHeader.className = 'nested-dropdown-arrow';
+        nestedDropdownHeader.innerHTML = `<img class="league-icon" src="${leagueFlag}">${leagueName}`;
 
-    const nestedDropdownList = document.createElement('ul');
-    nestedDropdownList.className = 'nested-dropdown';
+        const nestedDropdownItem = document.createElement('li');
+        nestedDropdownItem.className = 'has-nested-dropdown';
 
-    // Your nested dropdown items here...
+        const nestedDropdownList = document.createElement('ul');
+        nestedDropdownList.className = 'nested-dropdown';
 
-    nestedDropdownItem.appendChild(nestedDropdownList);
+        // Your nested dropdown items here...
 
-    nestedDropdownSection.appendChild(nestedDropdownHeader);
-    nestedDropdownSection.appendChild(nestedDropdownItem);
+        nestedDropdownItem.appendChild(nestedDropdownList);
 
-    countryElement.appendChild(nestedDropdownSection);
+        nestedDropdownSection.appendChild(nestedDropdownHeader);
+        nestedDropdownSection.appendChild(nestedDropdownItem);
 
-    // Append the dynamically created country element to the container
-    countryContainer.appendChild(countryElement);
+        countryElement.appendChild(nestedDropdownSection);
+
+        // Append the dynamically created country element to the container
+        countryContainer.appendChild(countryElement);
+      }
+    });
 
     // countryContainer.innerHTML += `
     //                               <div class="country-league-name">
@@ -244,14 +253,17 @@ if (storedData || storedDataLeagues) {
         });
 
         // }
-      } else {
-        console.log('Nisu iste');
       }
+      // else {
+      //   console.log('Nisu iste');
+      // }
     });
   });
 } else {
   console.error('No data found in localStorage');
 }
+
+let leagueData = [];
 
 /// fetch leagues///
 // const leagueUrl = `https://v3.football.api-sports.io/leagues?code=${countryCode}`;
@@ -265,10 +277,10 @@ async function fetchLeague(countryCode) {
   })
     .then(response => response.json())
     .then(data => {
-      // console.log(data);
-
+      // console.log(data); Dobro ispisuje
+      leagueData.push(data);
       // Store locally to use later
-      localStorage.setItem('myDataLeagues', JSON.stringify(data));
+      localStorage.setItem('myDataLeagues', JSON.stringify(leagueData));
     })
     .catch(error => {
       console.error('Error:', error);
