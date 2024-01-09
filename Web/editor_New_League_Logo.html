@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/editor_Menu.css">
+  <link rel="stylesheet" href="./css/editor_New_League.css">
   <title>Menu</title>
 </head>
 
@@ -19,17 +19,26 @@
           </div>
         </div>
 
-        <div class="account-container">
-          <!--test vodi na stranicu account kad je korisnik prijavljen, treba drugi a tag kasnije maknit-->
-          <p class="account"><a id="accountLink" href="./menu_Sign-In.html">placeholder for leagues</a> </p>
-        </div>
+  
+  
+          <h1>League Logo</h1>
+  
+          <form id="account-form">
+            <label for="fullname">League Name:</label><br>
+            <input type="text" id="leagueName" name="fullname" placeholder="Required" ><br>
+  
+            
+            <div>
+            <button type="button" id="continue-button">Continue</button>
+            </div>
+          </form>
 
       </div>
       <footer class=" footer ">
         <section class="options">
           <ul>
-            <li> <a href="./editor_New_League.html">New</a></li>
-            <li><a href="">Edit</a></li>
+            <li> <a href="">New</a></li>
+            <li><a href="./editor_Main.html">Edit</a></li>
             <li><a href="./menu.html">Quit</a></li>
           </ul>
         </section>
@@ -40,7 +49,7 @@
   </div>
 
 
-  <script type="module" src="./js/editor_Menu.js"></script>
+  <script type="module" src="./js/editor_New_League_Logo.js"></script>
 </body>
 
 </html>
