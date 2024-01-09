@@ -2,7 +2,7 @@
 
 //url - ask pb and change the second input variable
 sessionStorage.setItem('urlPB', '9');
-sessionStorage.setItem('portPB', '6' );
+sessionStorage.setItem('portPB', '6');
 
 
 
