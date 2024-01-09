@@ -1,5 +1,8 @@
 'use strict';
 
+const urlPB = sessionStorage.getItem('urlPB');
+const portPB = sessionStorage.getItem('portPB');
+
 function submitForm() {
   // event.preventDefault();
   // Get form data
@@ -18,7 +21,7 @@ function submitForm() {
 
   // Send data to the server using Fetch API
   //fetch('http://askPbForURL:askPbForPort/sign-up', {
-  fetch('http://1:9/sign-up', {
+  fetch(`http://${urlPB}:${portPB}/sign-up`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

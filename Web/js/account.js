@@ -1,7 +1,9 @@
 'use strict';
 
-// test global variabli
+const urlPB = sessionStorage.getItem('urlPB');
+const portPB = sessionStorage.getItem('portPB');
 
+// test global variabli
 
 const loggedIn = sessionStorage.getItem('loggedIn') === 'true';
 
@@ -16,7 +18,7 @@ if (loggedIn) {
   //get mail and full name form username
   // Send data to the server using Fetch API
   //fetch(`http://askPbForURL:askPbForPort/suser-info/?username=${usernameInput.value}`, {
-  fetch(`http://1:9/user-info/?username=${usernameInput.value}`, {  
+  fetch(`http://${urlPB}:${portPB}/user-info/?username=${usernameInput.value}`, {  
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -131,7 +133,7 @@ function editAccount(e){
         //
         // Send data to the server using Fetch API
         //fetch('http://askPbForURL:askPbForPort/sign-in', {
-        fetch('http://1:9/update-user', {  
+        fetch(`http://${urlPB}:${portPB}/update-user`, {  
         method: 'PUT',
         headers: {
         'Content-Type': 'application/json',

@@ -1,5 +1,9 @@
 'use strict';
 
+const urlPB = sessionStorage.getItem('urlPB');
+const portPB = sessionStorage.getItem('portPB');
+
+
 function getData() {
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
@@ -11,7 +15,7 @@ function getData() {
 
   // Send data to the server using Fetch API
   //fetch('http://askPbForURL:askPbForPort/sign-in', {
-  fetch('http://1:9/sign-in', {  
+  fetch(`http://${urlPB}:${portPB}/sign-in`, {  
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
