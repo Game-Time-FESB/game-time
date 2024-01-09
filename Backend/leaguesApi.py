@@ -27,8 +27,9 @@ class NewLeague(BaseModel):
     league_name: str  # Name of the league
     country: str  # Country league's played in
     city: str  # City where league's played in
-    admins: dict  # Admins for league dict(id : username)
     description: Optional[str]  # Description of the league
+    photo: Optional[str] = "photo"  # Image for league profile
+    admins: dict  # Admins for league dict(id : username)
 
 
 # * New team class definition with BaseModel
@@ -36,8 +37,9 @@ class NewTeam(BaseModel):
     league_in: str  # Name of the league team's in
     city_in: str  #  Name of the city team's in
     team_name: str  # Name of the team
-    players: dict  # Players on the team ({"name" : dict})
     description: Optional[str]  # Description of the team
+    photo: Optional[str] = "photo"  # Image for teams profile
+    players: dict  # Players on the team ({"name" : dict})
 
 
 # * New match class definition with BaseModel
@@ -71,6 +73,10 @@ def create_league(new_league: NewLeague):
     # Convert the NewLeague object to a dictionary
     league_dict = new_league.dict()
 
+    # Add needed keys for league dict
+    league_dict["teams"] = {}
+    league_dict["matches"] = {}
+
     # Define the filename based on the city
     filename = f"Database/{(new_league.city).lower()}_leagues.json"
 
@@ -86,6 +92,9 @@ def create_league(new_league: NewLeague):
         # Check if the league's name already exists
         if new_league.league_name in data.keys():
             return {"Create League": "FAILED", "Info": "League already exists"}
+    else:
+        # If the file doesn't exist, add "Country" and "City" keys to the data dict
+        data = {"Country": new_league.country, "City": new_league.city}
 
     # Use the league_name as the key and store the league_dict in data dict
     data[new_league.league_name] = league_dict

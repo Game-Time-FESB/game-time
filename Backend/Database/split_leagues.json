@@ -1,18 +1,23 @@
 {
     "Country": "Croatia",
     "City": "Split",
-    "Stars League Split": {
-        "description": "Splitska malonogometna liga koja se igra na Karepovcu",
-        "photo": "path/link",
+    "Stars Liga Split": {
+        "league_name": "Stars Liga Split",
+        "country": "Croatia",
+        "city": "Split",
+        "description": "Malonogometna amaterska liga koja se igra na Karepovcu",
+        "photo": "photo",
         "admins": {
-            "1": "ldoric02",
-            "2": "franjo64"
+            "1": "ldoric",
+            "2": "mmamic"
         },
         "teams": {
             "Klizav Pod": {
-                "description": "Splitski malonogometni tim sastavljen od bivsih igraca Dalmatinca i L.D.",
-                "photo": "path/link",
-                "locaton": "Split",
+                "league_in": "Stars Liga Split",
+                "city_in": "Split",
+                "team_name": "Klizav Pod",
+                "description": "Osrednji tim amaterskog malog nogometa sastavljen od osrednjih igrača",
+                "photo": "photo",
                 "players": {
                     "Luka Dorić": {
                         "shirt_number": "13",
@@ -20,89 +25,26 @@
                         "assists": 0
                     },
                     "Mislav Mamić": {
-                        "shirt_number": "45",
+                        "shirt_number": "11",
                         "goals": 0,
                         "assists": 0
                     }
                 }
-            },
-            "S.S. Oštrice": {
-                "description": "Splitski malonogometni tim sastavljen od likova napaljenih na Ciroa Imobileja",
-                "photo": "path/link",
-                "locaton": "Split",
-                "players": {
-                    "Mario Vuković": {
-                        "shirt_number": "10",
-                        "goals": 0,
-                        "assists": 0
-                    },
-                    "Duje Balaban": {
-                        "shirt_number": "9",
-                        "goals": 0,
-                        "assists": 0
-                    }
-                }
-            },
-            "MNK Karepovac": {
-                "league_in": "Stars League Split",
-                "city_in": "Split",
-                "team_name": "MNK Karepovac",
-                "players": {
-                    "Ante Pavić": {
-                        "shirt_number": "13",
-                        "goals": 0,
-                        "assists": 0
-                    }
-                },
-                "description": "Jedan od najačih malonogometnih klubova u regoinu!"
-            },
-            "MNK Juraj": {
-                "league_in": "Stars League Split",
-                "city_in": "Split",
-                "team_name": "MNK Juraj",
-                "players": {
-                    "Ecio Pavelić": {
-                        "shirt_number": "12",
-                        "goals": 0,
-                        "assists": 0
-                    }
-                },
-                "description": "Jedan od hrvatskih velikanskih klubova!"
             }
         },
-        "matches": {
-            "1": {
-                "home team": "Klizav Pod",
-                "away team": "S.S. Oštrice",
-                "date": "25-01-24",
-                "time": "1800",
-                "goals_home": 2,
-                "goals_home_info": {
-                    "1": {
-                        "scorer": "Luka Dorić",
-                        "assist": "Mislav Mamić",
-                        "time": "2"
-                    },
-                    "2": {
-                        "scorer": "Mislav Mamić",
-                        "assist": "Luka Dorić",
-                        "time": "21"
-                    }
-                },
-                "goals_away": 0,
-                "goals_away_info": {},
-                "finished": "true"
-            }
-        }
+        "matches": {}
     },
-    "Premier League": {
-        "league_name": "Premier League",
+    "UMN 1. liga": {
+        "league_name": "UMN 1. liga",
         "country": "Croatia",
         "city": "Split",
+        "description": "Malonogometna poluamaterska liga dvoranske vrste",
+        "photo": "photo",
         "admins": {
-            "1": "john_doe",
-            "2": "jane_doe"
+            "1": "svujevic",
+            "2": "zparavinja"
         },
-        "description": "Top level football league in Split, Croatia"
+        "teams": {},
+        "matches": {}
     }
 }
