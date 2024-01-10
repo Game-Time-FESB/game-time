@@ -115,6 +115,7 @@ def sign_up(user: User):
             "email": user.email,
             "username": user.username,
             "password": user.password,
+            "admin_of": {},
         }
 
         # Save the changed data to the database
@@ -201,6 +202,9 @@ def delete_user(delete: Delete):
 @app.get("/user-info")
 def get_info(username: str):
     try:
+        # Load the newest data
+        data = load_data("user_data")
+
         # Checking if the provided username matches any user in the data
         for user in data.values():
             if user["username"] == username:
@@ -228,6 +232,9 @@ def get_info(username: str):
 @app.get("/all-data")
 def get_data(passcode: Optional[str] = None):
     correct_passcode = "secret123"
+
+    # Load the newest data
+    data = load_data("user_data")
 
     # Check if the provided passcode is correct
     if passcode == correct_passcode:

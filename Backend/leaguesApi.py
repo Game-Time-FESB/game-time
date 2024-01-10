@@ -6,6 +6,8 @@ from typing import Optional
 from pydantic import BaseModel
 
 # * Imports for storing and handling data
+from cryptography.fernet import InvalidToken, Fernet
+from dotenv import load_dotenv
 import json
 import os
 
@@ -20,6 +22,18 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# * Getting the key for data encryption
+load_dotenv()
+
+key = os.getenv("ENCRYPTION_KEY")
+if key is None:
+    print("ERROR - No key")
+else:
+    key = key.encode()
+
+cipher_suite = Fernet(key)
 
 
 # * New league class definition with BaseModel
@@ -80,8 +94,8 @@ def create_league(new_league: NewLeague):
     # Define the filename based on the city
     filename = f"Database/{(new_league.city).lower()}_leagues.json"
 
-    # Initialize an empty dictionary for data
-    data = {}
+    # Load the user data
+    user_data = load_data("user_data")
 
     # Check if the file exists
     if os.path.exists(filename):
@@ -98,6 +112,17 @@ def create_league(new_league: NewLeague):
 
     # Use the league_name as the key and store the league_dict in data dict
     data[new_league.league_name] = league_dict
+
+    # Update the user data to include the new league they are admin of
+    for admin_username in new_league.admins.values():
+        for user_id, user_info in user_data.items():
+            if user_info["username"] == admin_username:
+                # Generate a unique id for the league
+                league_id = str(len(user_info["admin_of"]) + 1)
+                user_info["admin_of"][league_id] = new_league.league_name
+
+    # Save the updated user data
+    save_data(user_data, "user_data")
 
     # Store the data back to the file
     with open(filename, "w", encoding="utf-8") as f:
@@ -242,3 +267,40 @@ def get_data(city: str):
         content=json.dumps(data, indent=4, ensure_ascii=False),
         media_type="application/json",
     )
+
+
+#! ------------------------- network unrelated functions
+
+
+# * Function that loads the bin (json if needed) data (from optional file name) into a dictionary
+def load_data(fileName: str = "user_data"):
+    try:
+        # Open the binary file and read the encrypted data
+        with open(f"Database/{fileName}.bin", "rb") as file:
+            encrypted_data = file.read()
+
+        # Decrypt the data
+        decrypted_data = cipher_suite.decrypt(encrypted_data)
+
+        # Convert the decrypted data from JSON format to a Python dictionary
+        data = json.loads(decrypted_data.decode())
+
+    # If the data is not encrypted, read it as plain JSON from the .json file
+    except (InvalidToken, FileNotFoundError):
+        with open(f"Database/{fileName}.json", "r") as file:
+            data = json.load(file)
+
+    return data
+
+
+# * Function that saves the dictionary data into a bin file (with optional file name)
+def save_data(data, fileName: str = "user_data"):
+    # Convert the data from a Python dictionary to JSON format
+    data_string = json.dumps(data).encode()
+
+    # Encrypt the data
+    encrypted_data = cipher_suite.encrypt(data_string)
+
+    # Open the binary file and write the encrypted data
+    with open(f"Database/{fileName}.bin", "wb") as file:
+        file.write(encrypted_data)

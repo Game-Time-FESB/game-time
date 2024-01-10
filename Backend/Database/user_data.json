@@ -3,6 +3,7 @@
         "fullname": "Test Testic",
         "email": "test@test.com",
         "username": "test1991",
-        "password": "test123"
+        "password": "test123",
+        "admin_of" : {}
     }
 }

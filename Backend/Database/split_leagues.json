@@ -5,86 +5,11 @@
         "league_name": "Stars Liga Split",
         "country": "Croatia",
         "city": "Split",
-        "description": "Malonogometna amaterska liga koja se igra na Karepovcu",
+        "description": "Najjača malonogometna liga svijeta",
         "photo": "photo",
         "admins": {
-            "1": "ldoric",
-            "2": "mmamic"
-        },
-        "teams": {
-            "Klizav Pod": {
-                "league_in": "Stars Liga Split",
-                "city_in": "Split",
-                "team_name": "Klizav Pod",
-                "description": "Osrednji tim amaterskog malog nogometa sastavljen od osrednjih igrača",
-                "photo": "photo",
-                "players": {
-                    "Luka Dorić": {
-                        "shirt_number": "13",
-                        "goals": 0,
-                        "assists": 0
-                    },
-                    "Mislav Mamić": {
-                        "shirt_number": "11",
-                        "goals": 0,
-                        "assists": 0
-                    }
-                }
-            },
-            "S.S. Oštrice": {
-                "description": "Splitski malonogometni tim sastavljen od likova napaljenih na Ciroa Imobileja",
-                "photo": "path/link",
-                "locaton": "Split",
-                "players": {
-                    "Mario Vuković": {
-                        "shirt_number": "10",
-                        "goals": 0,
-                        "assists": 0
-                    },
-                    "Duje Balaban": {
-                        "shirt_number": "9",
-                        "goals": 0,
-                        "assists": 0
-                    }
-                }
-            }
-        },
-        "matches": {
-            "1": {
-                "league_in": "Stars Liga Split",
-                "city_in": "Split",
-                "home_team": "Klizav Pod",
-                "away_team": "S.S. Oštrice",
-                "date": "25-01-24",
-                "time": "1800",
-                "goals_home": 2,
-                "goals_home_info": {
-                    "1": {
-                        "scorer": "Luka Dorić",
-                        "assist": "Mislav Mamić",
-                        "time": "2"
-                    },
-                    "2": {
-                        "scorer": "Mislav Mamić",
-                        "assist": "Luka Dorić",
-                        "time": "21"
-                    }
-                },
-                "goals_away": 0,
-                "goals_away_info": {},
-                "finished": true
-            }
-        }
-    },
-    "UMN 1. liga": {
-        "league_name": "UMN 1. liga",
-        "country": "Croatia",
-        "city": "Split",
-        "description": "Malonogometna poluamaterska liga dvoranske vrste",
-        "photo": "photo",
-        "admins": {
-            "1": "svujevic",
-            "2": "zparavinja"
+            "1": "test1991",
+            "2": "narco"
         },
         "teams": {},
         "matches": {}
