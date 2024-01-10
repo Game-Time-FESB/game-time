@@ -1,0 +1,170 @@
+/* Reset styles */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-size: 62.5%;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+    background-color: #1d1d2bff;
+  }
+  
+  .container {
+    max-width: 60rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+  
+  .wrapper {
+    max-width: 60rem;
+    margin: 0 auto;
+  }
+  
+  /* LOGO HEADER */
+  .navbar-row {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: #070013ff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2rem 2rem 1rem 2rem;
+    margin-bottom: 0;
+  }
+  
+  .flex-1-col {
+    position: relative;
+  }
+  
+  .gametime-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .gametime-logo img {
+    width: 40%;
+    color: white;
+  }
+  
+  /* FOOTER SECTION, Fix na vrhu klase wrapper */
+  .footer {
+    background-color: #070013ff;
+    padding: 2rem 2rem 2rem 2rem;
+  }
+  
+  .options ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+  }
+  
+  .options ul li a:link,
+  .options ul li a:visited {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+  
+  /* New styling for the added containers */
+  .header-container {
+    background-color: #070013ff;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 0;
+  }
+  
+  .my-league {
+    color: #f6f6f6ff;
+    font-size: 4rem;
+    font-weight: 500;
+    padding: 10%;
+  }
+  
+  .details-container {
+    background-color: #070013ff;
+    padding: 1rem;
+    padding-bottom: 2rem;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 0;
+  }
+  
+  .details-container a {
+    color: #f6f6f6ff;
+    font-size: 1.6rem;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  
+  .description-container {
+    margin-top: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+  
+  .rounded-container {
+    border-radius: 10px;
+    background-color: #070013ff;
+    padding: 1rem;
+  }
+  
+  .description-text {
+    color: #f6f6f6ff;
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-top: 1rem;
+  }
+  
+  #league-name {
+    margin-top: 0;
+    margin-bottom: 3rem;
+  }
+  
+  .league-settings-link {
+    color: #f6f6f6ff; /* White color */
+    text-decoration: none; /* Remove underline */
+    margin-top: 1rem; /* Adjust the top margin */
+    font-size: 1.6rem;
+  }
+  
+  .league-settings {
+    margin-top: 2rem;
+    margin-left: 2.1rem;
+  }
+  
+  
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 0px solid #ffffff;
+    padding: 1rem;
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  td:nth-child(2) {
+    text-align: left;
+  }
+
+  th:nth-child(2) {
+    text-align: left;
+  }
+  
+ 
