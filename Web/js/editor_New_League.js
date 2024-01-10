@@ -14,6 +14,7 @@ function continueFun() {
     const leagueName = document.getElementById('leagueName').value;
     const country = document.getElementById('country').value;
     const city = document.getElementById('city').value;
+    const description = document.getElementById('description').value;
     
 
     if (leagueName === '' || country === '' || city === '') { 
@@ -25,6 +26,7 @@ function continueFun() {
     sessionStorage.setItem('leagueName', leagueName);
     sessionStorage.setItem('country', country);
     sessionStorage.setItem('city', city);
+    sessionStorage.setItem('description', description);
 
 
     window.location.href = 'editor_New_League_Logo.html';

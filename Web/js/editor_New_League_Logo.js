@@ -31,14 +31,24 @@ function continueFun() {
 */
 
 
+// Initialize admins object
+const admins = {}; 
+
+// Add current user as first admin 
+admins[1] = myUsername;
+
+// Add additional admins
+admins[2] = 'pb1911'; 
+
+
 
 const formData = {
     league_name: sessionStorage.getItem('leagueName'),
     country: sessionStorage.getItem('country'),
     city: sessionStorage.getItem('city'),
-    description: "olalala",
+    description: sessionStorage.getItem('description'),
     photo: "photo",
-    admins: {myUsername}
+    admins: admins
   };
 
 

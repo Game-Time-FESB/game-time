@@ -57,6 +57,20 @@
     width: 40%;
     color: white;
   }
+
+  .camera {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2rem;
+  }
+  
+  .camera img{
+    width: 30%;
+    color: white;
+  }
+
+
   /* dodani svi novi containeri i klase */
   .account-container, .edit-container, .amateur-editor-container, .about-us-container {
     padding-left: 1rem;
@@ -169,11 +183,32 @@
     background-color: #1d1d2bff;
     color: #f6f6f6ff;
   }
+
+  #account-form textarea {
+    width: 100%;
+    font-size: 2rem;
+    padding: 1.2rem;
+    margin-bottom: 0.8rem;
+    border-radius: 3rem;
+    border: 1px solid #f6f6f6ff;
+    background-color: #1d1d2bff;
+    color: #f6f6f6ff;
+    font-family: 'Roboto', sans-serif;
+  }
+
+
   
-  #saccount-form input:focus {
+  #account-form input:focus {
     outline: none;
     border: 1px solid #f6f6f6ff;
   }
+
+  #account-form textarea:focus {
+    outline: none;
+    border: 1px solid #f6f6f6ff;
+  }
+
+
   #account-form button {
     font-size: 2rem;
     color: #1d1d2bff;
