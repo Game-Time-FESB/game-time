@@ -4,11 +4,9 @@ console.log(myUsername);
 
 const continueButton = document.getElementById('continue-button');
 
-continueButton.addEventListener('click', continueFun);
+continueButton.addEventListener('click', getData);
 
-function continueFun() {
-    window.location.href = 'editor_New_League_Admin.html';
-}
+const description = document.getElementById('description');
 
 
 
@@ -16,11 +14,23 @@ function continueFun() {
 const admins = {}; 
 
 // Add current user as first admin 
-admins[1] = myUsername;
+var indexAdmin = 1;
+admins[indexAdmin] = myUsername;
+
+
+description.placeholder = Object.values(admins).join(', ');
+
 
 // Add additional admins
-admins[2] = 'pb1911'; 
+const addButton = document.getElementById('add-button');
+addButton.addEventListener('click', addAdmin);
 
+function addAdmin() {
+    indexAdmin++;
+    const newAdmin = document.getElementById('newAdminName').value;
+    admins[indexAdmin] = newAdmin;
+    description.placeholder = Object.values(admins).join(', ');
+}
 
 
 const formData = {
@@ -52,13 +62,16 @@ fetch(`http://${urlPB}:6970/create-league`, {
     if (data['Create League'] === 'SUCCESS') {
 
         console.log('successful!');
-        //window.location.href = 'index.html';
+        alert("League created!");
+        window.location.href = 'editor_Main.html';
     }
     // if not, display why the login failed
     else {
 
         console.log(data['Info']);
+        alert(data['Info']);
 
+        window.location.href = 'editor_New_League.html';
     }
     })
     .catch(error => {

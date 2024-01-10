@@ -21,13 +21,20 @@
 
   
   
-          <h1>League Logo</h1>
+          <h1>Add Admins</h1>
   
           <form id="account-form">
-            <div class="camera">
-              <img src="./assets/ikone/camera.svg" alt="">
+            <label for="fullname">Admin Username:</label><br>
+            <input type="text" id="newAdminName" name="fullname" placeholder="Optional" ><br>
+
+            <div>
+            <button type="button" id="add-button">Add</button>
             </div>
-           
+
+            
+            <label for="description">All admins:</label><br>
+            <textarea id="description" name="description" rows="7" cols="40" placeholder="Enter description here (optional)" readonly></textarea><br>
+                          
             
             <div>
             <button type="button" id="continue-button">Continue</button>
@@ -50,7 +57,7 @@
   </div>
 
 
-  <script type="module" src="./js/editor_New_League_Logo.js"></script>
+  <script type="module" src="./js/editor_New_League_Admin.js"></script>
 </body>
 
 </html>
