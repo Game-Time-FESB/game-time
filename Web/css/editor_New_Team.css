@@ -1,0 +1,258 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    /* font-size: 10px; */
+    font-size: 62.5%;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    color: #f6f6f6ff;
+    background-color: #1d1d2bff;
+  }
+  
+  .container {
+    max-width: 60rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+  
+  .wrapper {
+    max-width: 60rem;
+    margin: 0 auto;
+  }
+  
+  /* LOGO HEADER */
+  
+  .navbar-row {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #f6f6f6ff;
+    background-color: #070013ff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem 2rem 1rem 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .flex-1-col {
+    position: relative;
+  }
+  
+  .gametime-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .gametime-logo img {
+    width: 40%;
+    color: white;
+  }
+
+  .camera {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2rem;
+  }
+  
+  .camera img{
+    width: 30%;
+    color: white;
+  }
+
+
+  /* dodani svi novi containeri i klase */
+  .account-container, .edit-container, .amateur-editor-container, .about-us-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .account, .edit, .amateur-editor {
+    font-size: 2rem;
+    color: #f6f6f6ff;
+    font-weight: 500;
+    padding: 1rem 1rem 1.5rem 0.2rem;
+    border-bottom: #070013ff 1px solid;
+  }
+  /* about-us nesmi imati donji border */
+  .about-us {
+    font-size: 2rem;
+    color: #f6f6f6ff;
+    font-weight: 500;
+    padding: 1rem 1rem 1.5rem 0.2rem;
+  }
+  
+  .account a, .edit a, .amateur-editor a, .about-us a{
+    display: block;
+    text-decoration: none;
+    color: #f6f6f6ff;
+  }
+  
+  /* FOOTER SECTION, Fix na vrhu klase wrapper */
+  .footer {
+    background-color: #070013ff;
+    padding: 2rem 2rem 2rem 2rem;
+  }
+  
+  .options ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+  }
+  
+  .options ul li a:link,
+  .options ul li a:visited {
+    text-decoration: none;
+    color: #f6f6f6ff;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+
+  /*for forms*/
+
+  /*ispravit sve ove pizdarije u normalne id nazive kad skuzin formu*/
+
+
+  .navbar-row {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #f6f6f6ff;
+    background-color: #070013ff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem 1rem 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .flex-1-col {
+    position: relative;
+  }
+  
+  .back-arrow {
+    position: absolute;
+    right: 2.5rem;
+    top: 10rem;
+  }
+  
+  .back-arrow img {
+    width: 3.8rem;
+  }
+  
+  .gametime-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .gametime-logo img {
+    width: 40%;
+    color: white;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    margin-top: 10rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  #account-form label {
+    padding-left: 0.5rem;
+    font-size: 1.8rem;
+  }
+  
+  #account-form input {
+    width: 100%;
+    font-size: 2rem;
+    padding: 1.2rem;
+    margin-bottom: 0.8rem;
+    border-radius: 3rem;
+    border: 1px solid #f6f6f6ff;
+    background-color: #1d1d2bff;
+    color: #f6f6f6ff;
+  }
+
+  #account-form textarea {
+    width: 100%;
+    font-size: 2rem;
+    padding: 1.2rem;
+    margin-bottom: 0.8rem;
+    border-radius: 3rem;
+    border: 1px solid #f6f6f6ff;
+    background-color: #1d1d2bff;
+    color: #f6f6f6ff;
+    font-family: 'Roboto', sans-serif;
+  }
+
+
+  
+  #account-form input:focus {
+    outline: none;
+    border: 1px solid #f6f6f6ff;
+  }
+
+  #account-form textarea:focus {
+    outline: none;
+    border: 1px solid #f6f6f6ff;
+  }
+
+
+  #account-form button {
+    font-size: 2rem;
+    color: #1d1d2bff;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 1rem 2rem 1rem 2rem;
+    margin-top: 0.8rem;
+    margin-bottom: 2.5rem;
+    border-radius: 3rem;
+    border: 1px solid #f6f6f6ff;
+    background-color: f6f6f6ff;
+    align-self: center;
+  }
+  
+  p {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+  
+  h1,
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  p {
+    font-size: 1.5rem;
+    padding-left: 2rem;
+    text-align: center;
+  }
+  
+  p a {
+    font-weight: 600;
+    color: #87dba6ff;
+    text-decoration: none;
+  }
+  
+  /*sve ostalo isto kao u sign-up.css osim ovog ispod*/
+  form div{
+    display:flex;
+    justify-content: space-around;
+  }
+  

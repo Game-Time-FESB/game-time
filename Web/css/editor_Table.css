@@ -133,14 +133,14 @@
     margin-bottom: 3rem;
   }
   
-  .league-settings-link {
+  .add-team-link {
     color: #f6f6f6ff; /* White color */
     text-decoration: none; /* Remove underline */
     margin-top: 1rem; /* Adjust the top margin */
     font-size: 1.6rem;
   }
   
-  .league-settings {
+  .add-team {
     margin-top: 2rem;
     margin-left: 2.1rem;
   }
