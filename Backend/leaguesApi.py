@@ -115,11 +115,14 @@ def create_league(new_league: NewLeague):
 
     # Update the user data to include the new league they are admin of
     for admin_username in new_league.admins.values():
-        for user_id, user_info in user_data.items():
+        for _, user_info in user_data.items():
             if user_info["username"] == admin_username:
                 # Generate a unique id for the league
                 league_id = str(len(user_info["admin_of"]) + 1)
-                user_info["admin_of"][league_id] = new_league.league_name
+                user_info["admin_of"][league_id] = {
+                    "league_name": new_league.league_name,
+                    "league_city": new_league.city,
+                }
 
     # Save the updated user data
     save_data(user_data, "user_data")

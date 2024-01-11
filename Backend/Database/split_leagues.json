@@ -8,8 +8,19 @@
         "description": "Najjača malonogometna liga svijeta",
         "photo": "photo",
         "admins": {
-            "1": "test1991",
-            "2": "narco"
+            "1": "test1991"
+        },
+        "teams": {},
+        "matches": {}
+    },
+    "String": {
+        "league_name": "String",
+        "country": "string",
+        "city": "Split",
+        "description": "blablablabla",
+        "photo": "photo",
+        "admins": {
+            "1": "test1991"
         },
         "teams": {},
         "matches": {}
