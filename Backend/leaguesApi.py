@@ -71,6 +71,12 @@ class NewMatch(BaseModel):
     finished: bool  # Boolean indicating whether the match has finished or not
 
 
+# * LeagueId class definition with BaseModel for get_league_info
+class LeagueId(BaseModel):
+    league_name: str
+    city: str
+
+
 # * Main dictionary used for temporary storage
 data = {}
 
@@ -270,6 +276,43 @@ def get_data(city: str):
         content=json.dumps(data, indent=4, ensure_ascii=False),
         media_type="application/json",
     )
+
+
+# * Endpoint for getting all data for given league
+@app.post("/get-league-info")
+def get_league_info(league_id: LeagueId):
+    try:
+        # Define the filename based on the city
+        filename = f"Database/{(league_id.city).lower()}_leagues.json"
+
+        # Check if the file exists
+        if os.path.exists(filename):
+            # Load the data from the file
+            with open(filename, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        else:
+            # If the file doesn't exist, return an error message
+            return {"Get-league-info": "ERROR", "Info": "File with data not found"}
+
+        # Create dict for returning wanted data
+        league_info = {}
+
+        # Find data for specified league in the json file
+        for league_name, _ in data.items():
+            if league_name == league_id.league_name:
+                league_info = data[league_name]
+
+        # If it was found return it, else error msg
+        if league_info:
+            return league_info
+        else:
+            return {"Get-league-info": "ERROR", "Info": "League was not found"}
+
+    except Exception as e:
+        # prints the error out
+        print({"Get-league-info ERROR": f"{e}"})
+        # If there's an error, return update error to front
+        return {"Get-league-info": "ERROR"}
 
 
 #! ------------------------- network unrelated functions
