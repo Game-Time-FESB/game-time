@@ -44,17 +44,19 @@ document.addEventListener('DOMContentLoaded', function () {
         
                 // Create a new anchor element with a placeholder link
                 const accountLink = document.createElement('a');
-                accountLink.textContent = adminOf[i+1];
+                accountLink.textContent = adminOf[i+1]["league_name"];
         
                 // Append the anchor element to the account container
                 accountContainer.appendChild(accountLink);
 
+                console.log(adminOf[1]["league_name"]);
                 // Add an event listener to the account container
                 accountContainer.addEventListener('click', function () {
 
-                    sessionStorage.setItem('editorLeague', adminOf[i+1]);
+                    sessionStorage.setItem('editorLeague', adminOf[i+1]["league_name"]);
+                    sessionStorage.setItem('editorCity', adminOf[i+1]["league_city"]);
 
-                    console.log(adminOf[i+1]);
+                    console.log(adminOf[i+1]["league_name"]);
                     
                     window.location.href = "editor_Details.html";
 

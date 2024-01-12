@@ -3,13 +3,54 @@
 const leagueNameBig = document.getElementById('league-nameBig');
 leagueNameBig.textContent = sessionStorage.getItem('editorLeague');
 
+
+const urlPB = sessionStorage.getItem('urlPB');
+
+const formData = {
+  league_name: sessionStorage.getItem('editorLeague'),
+  city: sessionStorage.getItem('editorCity'),
+};
+
+
+fetch(`http://${urlPB}:6970/get-league-info`, {  
+  method: 'POST',
+  headers: {
+  'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(formData),
+})
+  .then(response => response.json())
+  .then(data => {
+  // Handle the response from the server as needed
+  console.log('Server response:', data["teams"]);
+
+  const teams = data["teams"];
+  const keys = Object.keys(teams);
+
+  for (let i = 0; i < keys.length; i++) {
+      addNewTeam(keys[i], 0, 0, 0, 0, 0);
+  }
+
+
+  })
+  .catch(error => {
+  console.error('Error:', error);
+  });
+
+
+
+
+
+
 // Sample team objects
 const teams = [
+  /*
   { position: 1, clubName: 'Klizav Pod', wins: 2, draws: 1, losses: 2, goalDifference: 0, points: 7 },
-  { position: 2, clubName: 'Team B', wins: 2, draws: 1, losses: 2, goalDifference: 0, points: 7 },
+  { position: 2, clubName: 'Team B', wins: 3, draws: 1, losses: 2, goalDifference: 0, points: 7 },
   { position: 3, clubName: 'Team C', wins: 2, draws: 1, losses: 2, goalDifference: 0, points: 7 },
-  { position: 4, clubName: 'Team D', wins: 2, draws: 1, losses: 2, goalDifference: 0, points: 7 },
+  { position: 4, clubName: 'Team D', wins: 1, draws: 1, losses: 2, goalDifference: 0, points: 7 },
   { position: 5, clubName: 'Team E', wins: 2, draws: 1, losses: 2, goalDifference: 0, points: 7 },
+  */
   // Add more teams as needed
 ];
 
@@ -105,6 +146,17 @@ function addNewTeam(clubName, wins, draws, losses, goalDifference, points) {
   // Call the function to display the updated table
   displayTable();
 }
+
+
+
+
+
+
+
+
+
+
+
 
 // Example usage:
 /*
