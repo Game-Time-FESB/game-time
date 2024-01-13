@@ -68,22 +68,58 @@ async function fetchCountries() {
   }
 }
 
-/////////////////////////////////////////////////////////////////////////////
+// Funkcija za dobavit meceve iz API, live je tako da triba pozvat svaki dan
+// Storea sam u local storage data
+const fixturesFetchUrl = 'https://v3.football.api-sports.io/fixtures?live=all';
+async function fetchFixtures() {
+  try {
+    const response = await fetch('', {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-host': 'v3.football.api-sports.io',
+        'x-rapidapi-key': 'dcaae038ccee033423d5bf4a3ca07a4b',
+      },
+    });
 
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log(data);
+    localStorage.setItem('myDataFixtures', JSON.stringify(data));
+  } catch (error) {
+    console.error('Error fetching games:', error);
+  }
+}
+
+fetchFixtures();
+
+/////////////////////////////////////////////////////////////////////////////
+// localStorage.removeItem('myDataLeagues');
 // Stored data from fetch
 const storedData = localStorage.getItem('myData');
 const storedDataLeagues = localStorage.getItem('myDataLeagues');
+const storedDataFixtures = localStorage.getItem('myDataFixtures');
 
-if (storedData || storedDataLeagues) {
+if (storedData || storedDataLeagues || storedDataFixtures) {
   // Parse the JSON data
   const jsonData = JSON.parse(storedData);
   const jsonDataLeagues = JSON.parse(storedDataLeagues);
+  const jsonDataFixtures = JSON.parse(storedDataFixtures);
   // Data from fetch ready to use
   console.log(jsonData);
   console.log(jsonDataLeagues); //Stored leagues inside array
+  console.log(jsonDataFixtures); //Stored fixtures inside array
+
+  const countriesToDisplay = ['Croatia', 'England', 'Spain'];
+  // Filter the jsonData.response array to only include the countries you want
+  const selectedCountries = jsonData.response.filter(country =>
+    countriesToDisplay.includes(country.name)
+  );
 
   // Napravit dropdown da radi i stavit gori u funkciju
-  jsonData.response.slice(8, 11).forEach(country => {
+  selectedCountries.forEach(country => {
     // 2 nacin kreiranja elemenata
     const countryElement = document.createElement('div');
     countryElement.className = 'country-league-container';
@@ -114,22 +150,16 @@ if (storedData || storedDataLeagues) {
     // console.log(country.name);
     // console.log(country.code);
     fetchLeague(country.code);
+
     // Uzete lige za ove 3 drzave i stavljene u array
     // Loopat kroz njih i napravit dom novi
     jsonDataLeagues.forEach(league => {
       if (league.parameters.code === country.code) {
-        // console.log(league);
         // console.log(league.response[0].league.name);
-        const leagueName = league.response[0].league.name;
-        const leagueFlag = league.response[0].league.logo;
 
         // Create nested dropdown section
         const nestedDropdownSection = document.createElement('ul');
         nestedDropdownSection.className = 'collapse-ul';
-
-        const nestedDropdownHeader = document.createElement('h4');
-        nestedDropdownHeader.className = 'nested-dropdown-arrow';
-        nestedDropdownHeader.innerHTML = `<img class="league-icon" src="${leagueFlag}">${leagueName}`;
 
         const nestedDropdownItem = document.createElement('li');
         nestedDropdownItem.className = 'has-nested-dropdown';
@@ -141,13 +171,77 @@ if (storedData || storedDataLeagues) {
 
         nestedDropdownItem.appendChild(nestedDropdownList);
 
-        nestedDropdownSection.appendChild(nestedDropdownHeader);
         nestedDropdownSection.appendChild(nestedDropdownItem);
 
         countryElement.appendChild(nestedDropdownSection);
 
-        // Append the dynamically created country element to the container
-        countryContainer.appendChild(countryElement);
+        for (let i = 0; i < 2; i++) {
+          const leagueName = league.response[i].league.name;
+          const leagueFlag = league.response[i].league.logo;
+
+          const nestedDropdownHeader = document.createElement('h4');
+          nestedDropdownHeader.className = 'nested-dropdown-arrow';
+          nestedDropdownHeader.innerHTML = `<img class="league-icon" src="${leagueFlag}">${leagueName}`;
+
+          // Append the dynamically created country element to the container
+          nestedDropdownSection.appendChild(nestedDropdownHeader);
+          countryContainer.appendChild(countryElement);
+
+          // Dio za meceve
+          const filteredFixtures = jsonDataFixtures.response.filter(fixture => {
+            return league.response.some(
+              leagueItem => leagueItem.league.id === fixture.league.id
+            );
+          });
+          // console.log(filteredFixtures); //Uspjesno sortira meceve po ligama
+
+          // Uzimamo prva 2 meca iz svake lige
+          filteredFixtures.slice(0, 2).forEach(fixture => {
+            // const teamLogo = fixture.teams.home.logo;
+            // console.log(fixture);
+            // fixtureListItem.innerHTML = `<img src="${fixture.teams.home.logo}"> vs <img src="${fixture.teams.away.logo}">`; // Uspjensno uzima timove i logoe ali preveliko doli klasu stavit
+            // nestedDropdownSection.appendChild(fixtureListItem);
+            // console.log(fixture.fixture.date);
+
+            // Vrijeme odigravanja meca
+            const timestamp = fixture.fixture.date;
+            const dateTime = new Date(timestamp);
+
+            const date = dateTime.toDateString(); // Get the date in the format "Thu Jan 13 2024"
+            const timeOptions = {
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: false,
+            };
+            const time = dateTime.toLocaleTimeString(undefined, timeOptions); // Get the time in the user's locale-specific format
+            // console.log('Date:', date);
+            // console.log('Time:', time);
+
+            // console.log(time);
+
+            nestedDropdownSection.innerHTML += ` <li>
+                                            <div class="my-league">
+                                              <div class="my-leagues-col1">
+
+                                                <div class="game-time">
+                                                  <p>${time}</p>
+                                                </div>
+                                              </div>
+
+                                              <div class="my-leagues-col2">
+                                                <div class="team1-icon">
+                                                  <img src="${fixture.teams.home.logo}" alt="">
+                                                </div>
+
+                                                <div class="team2-icon">
+                                                  <img src="${fixture.teams.away.logo}" alt="">
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </li>
+                                          `;
+          });
+        }
       }
     });
 
@@ -278,6 +372,7 @@ async function fetchLeague(countryCode) {
     .then(response => response.json())
     .then(data => {
       // console.log(data); Dobro ispisuje
+      console.log(data);
       leagueData.push(data);
       // Store locally to use later
       localStorage.setItem('myDataLeagues', JSON.stringify(leagueData));
