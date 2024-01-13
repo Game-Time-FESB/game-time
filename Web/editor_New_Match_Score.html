@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/editor_New_Match.css">
+  <link rel="stylesheet" href="./css/editor_New_Match_Score.css">
   <title>Menu</title>
 </head>
 
@@ -21,20 +21,26 @@
 
   
   
-          <h1>New Match</h1>
+          <h1>Match Resault</h1>
   
           <form id="account-form">
             <label for="fullname">Home Team:</label><br>
-            <input type="text" id="homeTeam" name="fullname" placeholder="Required" ><br>
+            <input type="text" id="homeTeamGoals" name="fullname" ><br>
   
             <label for="username">Away Team:</label><br>
-            <input type="text" id="awayTeam" name="username" placeholder="Required" ><br>
+            <input type="text" id="awayTeamGoals" name="username"  ><br>
 
-            <label for="username">Date:</label><br>
-            <input type="date" id="dateInput" name="username" placeholder="Required" ><br>
+            <label for="username">Home Goals:</label><br>
+            <input type="text" id="homeGoals" name="username"  ><br>
 
-            <label for="username">Time:</label><br>
-            <input type="time" id="timeInput" name="username" placeholder="Required" ><br>
+            <label for="username">Home Assists:</label><br>
+            <input type="text" id="homeAssists" name="username"  ><br>
+
+            <label for="username">Away Goals:</label><br>
+            <input type="text" id="awayGoals" name="username" ><br>
+
+            <label for="username">Away Assists:</label><br>
+            <input type="text" id="awayAssists" name="username"  ><br>
 
             
                           
@@ -60,7 +66,7 @@
   </div>
 
 
-  <script type="module" src="./js/editor_New_Match.js"></script>
+  <script type="module" src="./js/editor_New_Match_Score.js"></script>
 </body>
 
 </html>

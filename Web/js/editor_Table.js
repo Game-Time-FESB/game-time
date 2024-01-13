@@ -31,6 +31,24 @@ fetch(`http://${urlPB}:6970/get-league-info`, {
       addNewTeam(keys[i], 0, 0, 0, 0, 0);
   }
 
+  const matches = data["matches"];
+  const matchKeys = Object.keys(matches);
+
+  for (let i = 0; i < matchKeys.length; i++) {
+    const matchData = matches[matchKeys[i]];
+
+    // Extract relevant information
+    const homeTeam = matchData["home_team"];
+    const awayTeam = matchData["away_team"];
+    const isFinished = matchData["finished"];
+    const goalsHome = matchData["goals_home"];
+    const goalsAway = matchData["goals_away"];  
+
+    importMatch(homeTeam, awayTeam, isFinished, goalsHome, goalsAway);
+  }
+
+  sortTeamsByPoints();
+
 
   })
   .catch(error => {
@@ -122,8 +140,60 @@ function displayTable() {
   });
 }
 
+
+
+
+
+function importMatch(homeTeam, awayTeam, isFinished, goalsHome, goalsAway){
+    //console.log(`Match between ${homeTeam} and ${awayTeam}: ${isFinished ? 'Finished' : 'Not Finished'}`);
+    //console.log(`Goals - Home: ${goalsHome}, Away: ${goalsAway}`);
+
+    if (isFinished) {	
+      
+      const homeTeamObj = teams.find(team => team.clubName === homeTeam);
+      const awayTeamObj = teams.find(team => team.clubName === awayTeam);
+
+      // Update the goal difference for both teams
+      if (homeTeamObj && awayTeamObj) {
+          console.log(`Updating goal difference for ${homeTeam} and ${awayTeam}`);
+          
+          //update the goal difference for both teams
+          homeTeamObj.goalDifference += goalsHome - goalsAway;
+          awayTeamObj.goalDifference += goalsAway - goalsHome;
+
+          //update the points for both teams
+          if (goalsHome>goalsAway) {
+            homeTeamObj.points += 3;
+            awayTeamObj.points += 0;
+            homeTeamObj.wins += 1;
+            awayTeamObj.losses += 1;
+          } else if (goalsAway>goalsHome) {
+            homeTeamObj.points += 0;
+            awayTeamObj.points += 3;
+            homeTeamObj.losses += 1;
+            awayTeamObj.wins += 1;
+          } else {
+            homeTeamObj.points += 1;
+            awayTeamObj.points += 1;
+            homeTeamObj.draws += 1;
+            awayTeamObj.draws += 1;
+          }
+
+         
+      }
+
+
+    }
+}
+
+
+
+
+
 // Example usage:
-sortTeamsByPoints();
+//sortTeamsByPoints();
+
+//displayTable();
 
 // Function to add a new team to the teams array
 function addNewTeam(clubName, wins, draws, losses, goalDifference, points) {
