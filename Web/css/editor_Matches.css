@@ -147,6 +147,37 @@
     margin-top: 2rem;
     margin-left: 2.1rem;
   }
+
+.match-container {
+  background-color: #070013ff;
+  padding: 2rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+
+.match-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.match-container p {
+  width: 45%; /* Adjust as needed */
+  text-align: left;
+  padding: 0.5rem;
+}
+
+.match-container p:last-child {
+  text-align: right;
+}
+
+
+
+
+  
   
 
 

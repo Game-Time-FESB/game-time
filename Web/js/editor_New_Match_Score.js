@@ -19,8 +19,8 @@ function continueFun() {
     const editorCity = sessionStorage.getItem('editorCity');
 
 
-    const homeTeamGoals = document.getElementById('homeTeamGoals').value;
-    const awayTeamGoals = document.getElementById('awayTeamGoals').value;
+    var homeTeamGoals = document.getElementById('homeTeamGoals').value;
+    var awayTeamGoals = document.getElementById('awayTeamGoals').value;
 
     var homeGoals = document.getElementById('homeGoals').value;
     var awayGoals = document.getElementById('awayGoals').value;
@@ -46,6 +46,9 @@ function continueFun() {
 
     if (homeTeamGoals === '' || awayTeamGoals === '') { 
       isFinished = false;
+      homeTeamGoals = 0;
+      awayTeamGoals = 0;
+
     }
     else{
     
@@ -106,7 +109,7 @@ function continueFun() {
     // if not, display why the login failed
     else {
 
-        console.log(data['Info']);
+        console.log(data);
         alert(data['Info']);
 
         window.location.href = 'editor_New_Match.html';
