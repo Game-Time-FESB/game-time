@@ -1,0 +1,222 @@
+/*
+
+--- 01 TYOIGRAPHY SYSTEM
+
+- font size (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+- Font weights:
+Default: 400
+Medium: 500
+Semi-bold: 600
+Bold: 700
+
+- Line height:
+Default: 1
+Small: 1.05
+Medium: 1.2
+Paragraph default: 1.6
+
+- Letter spacing
+-0.5px
+0.75px
+
+--- 02 COLORS
+
+- Primary: 
+
+
+
+--- 05 SHADOWS
+
+box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+
+--- 06 BORDER-RADIUS
+Default: 
+Medium: 
+--- 07 WHITESPACE
+
+- spacing system (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128    
+*/
+
+/* NARCO ASSESTS */
+
+/* font za svaki teskt: Roboto Medium
+font u logou: Passion One
+
+Boje:
+zelena: #87dba6ff
+tamno plava na logou: #0e0027ff
+bila za tekst: #f6f6f6ff
+background svitlija: #1d1d2bff
+background tamnija: #070013ff
+ljubičasta za ne bijeli tekst: #53537aff
+Border color: #4b4b4b
+
+//boje su napisane u RGBA, ako van ne radi samo maknite ffsa kraja */
+
+/* MOBILE VERSION DEFAULT */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    /* font-size: 10px; */
+    font-size: 62.5%;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    color: #f6f6f6ff;
+    background-color: #1d1d2bff;
+  }
+  
+  /* Moguce da ovo vise ne treba */
+  .container {
+    max-width: 60rem;
+    /* margin: 0 auto; */
+  }
+  
+  /* POPRAVLJENO DA FOOTER BUDE DOLJE */
+  .wrapper {
+    max-width: 60rem;
+    margin: 0 auto;
+  }
+  
+  .flex-content {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+  
+  /* ============================KOD======================================= */
+  
+  /* HEADER SECTION */
+  
+  .navbar-row {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #f6f6f6ff;
+    background-color: #070013ff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem 1rem 2rem;
+  }
+  
+  .search-btn {
+    padding: 1rem 0 1rem 1rem;
+  }
+  
+  .search-btn img {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+  }
+  
+
+  
+  /* MAIN SECTION */
+  main {
+    background-color: #1d1d2bff;
+    padding: 1rem 2rem 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  
+  .search{
+    display: flex;
+    justify-content: space-between;
+    background-color: #070013ff;
+    padding: 1rem 3rem;
+    border: 1rem;
+    border-radius: 2rem;
+  }
+
+  .search input{
+    background-color: #070013ff;
+    border:none;
+    color:#f6f6f6ff;
+  }
+
+  .search input:focus{
+    border:none;
+    outline: none;
+  }
+
+  h2{
+    margin:1rem;
+  }
+
+  .display-location{
+    font-size: 1.5rem;
+    background-color: #070013ff;
+    padding: 1rem 3rem;
+    border: 1rem;
+    border-radius: 2rem;
+  }
+
+  /* FOOTER SECTION, Fix na vrhu klase wrapper i flex-content*/
+  .footer {
+    background-color: #070013ff;
+    padding: 2rem 2rem 2rem 2rem;
+  }
+  
+  .options ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+  }
+  
+  .options ul li a:link,
+  .options ul li a:visited {
+    text-decoration: none;
+    color: #f6f6f6ff;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+
+  /*calendar*/
+  
+  
+  .date {
+    display: flex; 
+    align-items: center;
+  }
+  
+  #dateInput:focus {
+    outline: none;
+    border-color: #070013ff;
+  }
+  
+  /* Style the date input */
+    #dateInput {
+    color-scheme: dark;
+    padding: 10px; 
+    font-size: 1em;
+    border: 1px solid #070013ff;
+    background-color: #070013ff;
+    color: #f6f6f6ff;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  /* Hide text input */
+  #dateInput::-webkit-datetime-edit {
+    display: none; 
+  }
+  
+  /* Show calendar icon */
+  #dateInput::-webkit-calendar-picker-indicator {
+    display: block;
+  }
+  
