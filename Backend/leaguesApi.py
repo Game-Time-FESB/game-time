@@ -36,7 +36,7 @@ else:
 cipher_suite = Fernet(key)
 
 
-# * New league class definition with BaseModel
+# * New league class definition
 class NewLeague(BaseModel):
     league_name: str  # Name of the league
     country: str  # Country league's played in
@@ -46,7 +46,7 @@ class NewLeague(BaseModel):
     admins: dict  # Admins for league dict(id : username)
 
 
-# * New team class definition with BaseModel
+# * New team class definition
 class NewTeam(BaseModel):
     league_in: str  # Name of the league team's in
     city_in: str  #  Name of the city team's in
@@ -56,7 +56,7 @@ class NewTeam(BaseModel):
     players: dict  # Players on the team ({"name" : dict})
 
 
-# * New match class definition with BaseModel
+# * New match class definition
 class NewMatch(BaseModel):
     league_in: str  # Name of the league in which the match is played
     city_in: str  # Name of the city in which the match is played
@@ -71,7 +71,23 @@ class NewMatch(BaseModel):
     finished: bool  # Boolean indicating whether the match has finished or not
 
 
-# * LeagueId class definition with BaseModel for get_league_info
+# * Update match class definition
+class UpdateMatch(BaseModel):
+    match_id: str  # Id of the match 
+    league_in: str  # Name of the league in which the match is played
+    city_in: str  # Name of the city in which the match is played
+    home_team: Optional[str] = None  # Name of the home team
+    away_team: Optional[str] = None # Name of the away team
+    date: Optional[str] = None # Date of the match
+    time: Optional[str] = None # Time of the match
+    goals_home: Optional[int] = None  # Number of goals scored by the home team
+    goals_home_info: Optional[dict] = None  # Info about the goals scored by the home team
+    goals_away: Optional[int] = None  # Number of goals scored by the away team
+    goals_away_info: Optional[dict] = None  # Info about the goals scored by the away team
+    finished: Optional[bool] = None  # Boolean indicating whether the match has finished or not
+
+
+# * LeagueId class definition for get_league_info
 class LeagueId(BaseModel):
     league_name: str
     city: str
@@ -254,6 +270,65 @@ def add_match(new_match: NewMatch):
     else:
         # If the file doesn't exist, return an error message
         return {"Add Match": "ERROR", "Info": "File with data not found"}
+
+
+# * Endpoint for updating match info
+@app.put("/update-match")
+def update_match(update_match: UpdateMatch):
+    # Define the filename based on the city
+    filename = f"Database/{(update_match.city_in).lower()}_leagues.json"
+
+    # Initialize an empty dictionary for data
+    data = {}
+
+    # Check if the file exists
+    if os.path.exists(filename):
+        # Load the data from the file
+        with open(filename, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        # Check if the league's name exists
+        if update_match.league_in in data.keys():
+            # Check if the 'matches' key exists
+            if "matches" in data[update_match.league_in].keys():
+                # Check if the match id already exists
+                if update_match.match_id in data[update_match.league_in]["matches"].keys():
+                    # Update the match with the match_dict
+                    for key, value in update_match.dict().items():
+                        if value is not None:
+                            data[update_match.league_in]["matches"][update_match.match_id][key] = value
+
+                    # Store the data back to the file
+                    with open(filename, "w", encoding="utf-8") as f:
+                        json.dump(data, f, ensure_ascii=False, indent=4)
+
+                    # Clear the temp dict
+                    data = {}
+
+                    # Return a success message
+                    return {
+                        "Update Match": "SUCCESS",
+                        "Info": "Match successfully updated in the league",
+                    }
+
+                else:
+                    # If the match id doesn't exist, return an error message
+                    return {"Update Match": "ERROR", "Info": "Match not found"}
+
+            else:
+                # If the 'matches' key doesn't exist, return an error message
+                return {
+                    "Update Match": "ERROR",
+                    "Info": "'matches' key not found in the league",
+                }
+
+        else:
+            # If the league doesn't exist, return an error message
+            return {"Update Match": "ERROR", "Info": "League not found"}
+
+    else:
+        # If the file doesn't exist, return an error message
+        return {"Update Match": "ERROR", "Info": "File with data not found"}
 
 
 # * Endpoint for getting all data (just for test)
