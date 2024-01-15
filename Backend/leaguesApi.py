@@ -46,6 +46,16 @@ class NewLeague(BaseModel):
     admins: dict  # Admins for league dict(id : username)
 
 
+# * Update league class definition
+class UpdateLeague(BaseModel):
+    league_name: str  # Name of the league
+    country: str  # Country league's played in
+    city: str  # City where league's played in
+    description: Optional[str] = None  # Description of the league
+    photo: Optional[str] = None  # Image for league profile
+    admins: Optional[dict] = None  # Admins for league dict(id : username)
+
+
 # * New team class definition
 class NewTeam(BaseModel):
     league_in: str  # Name of the league team's in
@@ -54,6 +64,16 @@ class NewTeam(BaseModel):
     description: Optional[str]  # Description of the team
     photo: Optional[str] = "photo"  # Image for teams profile
     players: dict  # Players on the team ({"name" : dict})
+
+
+# * Update team class definition
+class UpdateTeam(BaseModel):
+    league_in: str  # Name of the league team's in
+    city_in: str  # Name of the city team's in
+    team_name: str  # Name of the team
+    description: Optional[str] = None  # Description of the team
+    photo: Optional[str] = None  # Image for teams profile
+    players: Optional[dict] = None  # Players on the team ({"name" : dict})
 
 
 # * New match class definition
@@ -270,6 +290,138 @@ def add_match(new_match: NewMatch):
     else:
         # If the file doesn't exist, return an error message
         return {"Add Match": "ERROR", "Info": "File with data not found"}
+
+
+@app.put("/update-league")
+def update_league(updated_league: UpdateLeague):
+    # Convert the UpdateLeague object to a dictionary
+    league_dict = updated_league.dict()
+
+    # Define the filename based on the city
+    filename = f"Database/{(updated_league.city).lower()}_leagues.json"
+
+    # Load the user data
+    user_data = load_data("user_data")
+
+    # Check if the file exists
+    if os.path.exists(filename):
+        # Load the data from the file
+        with open(filename, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        # Check if the league's name already exists
+        if updated_league.league_name in data.keys():
+            # Get the existing league data
+            existing_league = data[updated_league.league_name]
+
+            # Update only the fields which aren't None
+            for key, value in league_dict.items():
+                if value is not None:
+                    existing_league[key] = value
+
+            # Update the league's data
+            data[updated_league.league_name] = existing_league
+
+            # Update the user data to include the updated league they are admin of
+            if updated_league.admins:
+                for admin_username in updated_league.admins.values():
+                    for _, user_info in user_data.items():
+                        if user_info["username"] == admin_username:
+                            # Generate a unique id for the league
+                            league_id = str(len(user_info["admin_of"]) + 1)
+                            user_info["admin_of"][league_id] = {
+                                "league_name": updated_league.league_name,
+                                "league_city": updated_league.city,
+                            }
+
+            # Save the updated user data
+            save_data(user_data, "user_data")
+
+            # Store the data back to the file
+            with open(filename, "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=4)
+
+            # Clear the temp dict
+            data = {}
+
+            # Return a success message
+            return {
+                "Update League": "SUCCESS",
+                "Info": "League successfully updated",
+            }
+
+        else:
+            # If the league's name doesn't exist, return an error message
+            return {"Update League": "FAILED", "Info": "League not found"}
+
+    else:
+        # If the file doesn't exist, return an error message
+        return {"Update League": "ERROR", "Info": "File not found"}
+
+
+# * Endpoint for updating team info
+@app.put("/update-team")
+def update_team(updated_team: UpdateTeam):
+    # Convert the UpdateTeam object to a dictionary
+    team_dict = updated_team.dict()
+
+    # Define the filename based on the city
+    filename = f"Database/{(updated_team.city_in).lower()}_leagues.json"
+
+    # Initialize an empty dictionary for data
+    data = {}
+
+    # Check if the file exists
+    if os.path.exists(filename):
+        # Load the data from the file
+        with open(filename, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        # Check if the league's name exists
+        if updated_team.league_in in data.keys():
+            # Check if the 'teams' key exists
+            if "teams" in data[updated_team.league_in].keys():
+                # Check if the team's name already exists
+                if updated_team.team_name in data[updated_team.league_in]["teams"].keys():
+                    # Get the existing team data
+                    existing_team = data[updated_team.league_in]["teams"][updated_team.team_name]
+
+                    # Update only the non-None fields
+                    for key, value in team_dict.items():
+                        if value is not None:
+                            existing_team[key] = value
+
+                    # Update the team's data
+                    data[updated_team.league_in]["teams"][updated_team.team_name] = existing_team
+
+                    # Store the data back to the file
+                    with open(filename, "w", encoding="utf-8") as f:
+                        json.dump(data, f, ensure_ascii=False, indent=4)
+
+                    # Clear the temp dict
+                    data = {}
+
+                    # Return a success message
+                    return {
+                        "Update Team": "SUCCESS",
+                        "Info": "Team successfully updated in the league",
+                    }
+
+                else:
+                    # If the team's name doesn't exist, return an error message
+                    return {"Update Team": "FAILED", "Info": "Team not found"}
+
+            else:
+                # If the 'teams' key doesn't exist, return an error message
+                return {"Update Team": "ERROR", "Info": "'teams' key not found in the league"}
+
+        else:
+            # If the league doesn't exist, return an error message
+            return {"Update Team": "ERROR", "Info": "League not found"}
+
+    else:
+        # If the file doesn't exist, return an error message
+        return {"Update Team": "ERROR", "Info": "File not found"}
 
 
 # * Endpoint for updating match info

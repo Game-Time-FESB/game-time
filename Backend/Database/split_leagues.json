@@ -5,13 +5,57 @@
         "league_name": "Stars Liga Split",
         "country": "Croatia",
         "city": "Split",
-        "description": "Najjača malonogometna liga svijeta",
+        "description": "Neka losa liga",
         "photo": "photo",
         "admins": {
             "1": "test1991"
         },
-        "teams": {},
-        "matches": {}
+        "teams": {
+            "Jablanovi": {
+                "league_in": "Stars Liga Split",
+                "city_in": "Split",
+                "team_name": "Jablanovi",
+                "description": "Tim sastavljen od panjeva jablana.",
+                "photo": "photo",
+                "players": {
+                    "Mišo Gršo": {
+                        "shirt_number": "13",
+                        "goals": 0,
+                        "assists": 0
+                    }
+                }
+            },
+            "MNK Juraj": {
+                "league_in": "Stars Liga Split",
+                "city_in": "Split",
+                "team_name": "MNK Juraj",
+                "description": "Skroz dobar tim",
+                "photo": "photo",
+                "players": {
+                    "Miho Grogo": {
+                        "shirt_number": "11",
+                        "goals": 0,
+                        "assists": 0
+                    }
+                }
+            }
+        },
+        "matches": {
+            "1": {
+                "league_in": "Stars Liga Split",
+                "city_in": "Split",
+                "home_team": "MNK Juraj",
+                "away_team": "Jablanovi",
+                "date": "13-12-2023",
+                "time": "1900",
+                "goals_home": 0,
+                "goals_home_info": {},
+                "goals_away": 0,
+                "goals_away_info": {},
+                "finished": true,
+                "match_id": "1"
+            }
+        }
     },
     "String": {
         "league_name": "String",
