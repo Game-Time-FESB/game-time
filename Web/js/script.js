@@ -70,7 +70,8 @@ async function fetchCountries() {
 
 // Funkcija za dobavit meceve iz API, live je tako da triba pozvat svaki dan
 // Storea sam u local storage data
-const fixturesFetchUrl = 'https://v3.football.api-sports.io/fixtures?live=all';
+const fixturesFetchUrl = 'https://v3.football.api-sports.io/fixtures';
+// novi ka sa datumom https://v3.football.api-sports.io/fixtures?date=2024-01-16
 async function fetchFixtures() {
   try {
     const response = await fetch('', {
@@ -112,7 +113,7 @@ if (storedData || storedDataLeagues || storedDataFixtures) {
   console.log(jsonDataLeagues); //Stored leagues inside array
   console.log(jsonDataFixtures); //Stored fixtures inside array
 
-  const countriesToDisplay = ['Croatia', 'England', 'Spain'];
+  const countriesToDisplay = ['Croatia', 'England', 'Spain', 'Italy'];
   // Filter the jsonData.response array to only include the countries you want
   const selectedCountries = jsonData.response.filter(country =>
     countriesToDisplay.includes(country.name)
@@ -153,6 +154,7 @@ if (storedData || storedDataLeagues || storedDataFixtures) {
 
     // Uzete lige za ove 3 drzave i stavljene u array
     // Loopat kroz njih i napravit dom novi
+
     jsonDataLeagues.forEach(league => {
       if (league.parameters.code === country.code) {
         // console.log(league.response[0].league.name);
@@ -175,7 +177,9 @@ if (storedData || storedDataLeagues || storedDataFixtures) {
 
         countryElement.appendChild(nestedDropdownSection);
 
-        for (let i = 0; i < 2; i++) {
+        for (let i = 0; i < 4; i++) {
+          const leagueId = league.response[i].league.id;
+
           const leagueName = league.response[i].league.name;
           const leagueFlag = league.response[i].league.logo;
 
@@ -185,15 +189,17 @@ if (storedData || storedDataLeagues || storedDataFixtures) {
 
           // Append the dynamically created country element to the container
           nestedDropdownSection.appendChild(nestedDropdownHeader);
-          countryContainer.appendChild(countryElement);
 
           // Dio za meceve
+          // const filteredFixtures = jsonDataFixtures.response.filter(fixture => {
+          //   return league.response.some(
+          //     leagueItem => leagueItem.league.id === fixture.league.id
+          //   );
+          // });
           const filteredFixtures = jsonDataFixtures.response.filter(fixture => {
-            return league.response.some(
-              leagueItem => leagueItem.league.id === fixture.league.id
-            );
+            return leagueId === fixture.league.id;
           });
-          // console.log(filteredFixtures); //Uspjesno sortira meceve po ligama
+          // console.log(filteredFixtures);
 
           // Uzimamo prva 2 meca iz svake lige
           filteredFixtures.slice(0, 2).forEach(fixture => {
@@ -218,8 +224,8 @@ if (storedData || storedDataLeagues || storedDataFixtures) {
             // console.log('Time:', time);
 
             // console.log(time);
-
-            nestedDropdownSection.innerHTML += ` <li>
+            const fixtureListItem = document.createElement('li');
+            fixtureListItem.innerHTML = ` 
                                             <div class="my-league">
                                               <div class="my-leagues-col1">
 
@@ -238,11 +244,13 @@ if (storedData || storedDataLeagues || storedDataFixtures) {
                                                 </div>
                                               </div>
                                             </div>
-                                          </li>
+                                          
                                           `;
+            nestedDropdownSection.appendChild(fixtureListItem);
           });
         }
       }
+      countryContainer.appendChild(countryElement);
     });
 
     // countryContainer.innerHTML += `
