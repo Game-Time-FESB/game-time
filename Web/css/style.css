@@ -353,9 +353,14 @@ h4,
 }
 
 .collapse-ul li {
+  /* Dodano zbog api */
+  /* display: none; */
   font-size: 1.8rem;
   list-style: none;
   text-decoration: none;
+}
+li.fixture-list-item {
+  display: none;
 }
 
 /* NOVO  DROPDOWN NESTED */

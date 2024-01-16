@@ -177,7 +177,7 @@ if (storedData || storedDataLeagues || storedDataFixtures) {
 
         countryElement.appendChild(nestedDropdownSection);
 
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 2; i++) {
           const leagueId = league.response[i].league.id;
 
           const leagueName = league.response[i].league.name;
@@ -225,6 +225,7 @@ if (storedData || storedDataLeagues || storedDataFixtures) {
 
             // console.log(time);
             const fixtureListItem = document.createElement('li');
+            fixtureListItem.className = 'fixture-list-item';
             fixtureListItem.innerHTML = ` 
                                             <div class="my-league">
                                               <div class="my-leagues-col1">
@@ -361,6 +362,33 @@ if (storedData || storedDataLeagues || storedDataFixtures) {
       // }
     });
   });
+
+  // New code for nested dropdown
+  const arrows = Array.from(
+    document.querySelectorAll('.nested-dropdown-arrow')
+  );
+  const specificArrow = arrows.find(
+    arrow => arrow.innerText.trim() === 'Serie A'
+  );
+  console.log(specificArrow);
+  const nestedDropdownHeading4 = document.querySelector('.has-nested-dropdown');
+
+  const collapsUlNested = document.querySelector('.nested-dropdown');
+  const listItems = document.querySelectorAll('li.fixture-list-item');
+
+  if (specificArrow) {
+    specificArrow.addEventListener('click', function () {
+      listItems.forEach(item => {
+        if (item.style.display === 'none') {
+          item.style.display = 'block';
+          specificArrow.classList.add('up');
+        } else {
+          item.style.display = 'none';
+          specificArrow.classList.remove('up');
+        }
+      });
+    });
+  }
 } else {
   console.error('No data found in localStorage');
 }
