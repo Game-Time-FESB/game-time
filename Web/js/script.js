@@ -1,7 +1,7 @@
 'use strict';
 
 //url - ask pb and change the second input variable
-sessionStorage.setItem('urlPB', '1');
+sessionStorage.setItem('urlPB', '93.143.170.12');
 sessionStorage.setItem('portPB', '6969');
 
 // test global variabli
@@ -22,7 +22,7 @@ if (loggedIn) {
 
 // Kodovi za API
 // Dario kod - dcaae038ccee033423d5bf4a3ca07a4b
-// Narco kod 1 - a86f3f6be09680dbfff0dbe302e84620
+// Narco kod 1 - a0af909560cf747e4971386daebe7a23
 // Narco kod 2 - 8929fc34ae8055f375d87d4555275302
 // Pb kod 1 - 15a63da56711143f03a2724171b1c8f1
 // Pb kod 2 - e2e128f87080419fac86c79406a98aa3
@@ -47,7 +47,7 @@ async function fetchCountries() {
       method: 'GET',
       headers: {
         'x-rapidapi-host': 'v3.football.api-sports.io',
-        'x-rapidapi-key': 'dcaae038ccee033423d5bf4a3ca07a4b',
+        'x-rapidapi-key': 'a0af909560cf747e4971386daebe7a23',
       },
     });
 
@@ -56,6 +56,7 @@ async function fetchCountries() {
     }
 
     const data = await response.json();
+    console.log(data);
 
     // Flag fetch (ne treba vise)
     // const flagFetchUrl = `https://media.api-sports.io/flags/${country.code}.svg`;
@@ -67,6 +68,7 @@ async function fetchCountries() {
     console.error('Error fetching games:', error);
   }
 }
+fetchCountries();
 
 // Funkcija za dobavit meceve iz API, live je tako da triba pozvat svaki dan
 // Storea sam u local storage data
@@ -78,7 +80,7 @@ async function fetchFixtures() {
       method: 'GET',
       headers: {
         'x-rapidapi-host': 'v3.football.api-sports.io',
-        'x-rapidapi-key': 'dcaae038ccee033423d5bf4a3ca07a4b',
+        'x-rapidapi-key': 'a0af909560cf747e4971386daebe7a23',
       },
     });
 
@@ -87,7 +89,8 @@ async function fetchFixtures() {
     }
 
     const data = await response.json();
-    console.log(data);
+
+
     localStorage.setItem('myDataFixtures', JSON.stringify(data));
   } catch (error) {
     console.error('Error fetching games:', error);
@@ -109,15 +112,19 @@ if (storedData || storedDataLeagues || storedDataFixtures) {
   const jsonDataLeagues = JSON.parse(storedDataLeagues);
   const jsonDataFixtures = JSON.parse(storedDataFixtures);
   // Data from fetch ready to use
+  /*
   console.log(jsonData);
   console.log(jsonDataLeagues); //Stored leagues inside array
+  */
   console.log(jsonDataFixtures); //Stored fixtures inside array
 
   const countriesToDisplay = ['Croatia', 'England', 'Spain', 'Italy'];
   // Filter the jsonData.response array to only include the countries you want
+  
   const selectedCountries = jsonData.response.filter(country =>
     countriesToDisplay.includes(country.name)
   );
+  
 
   // Napravit dropdown da radi i stavit gori u funkciju
   selectedCountries.forEach(country => {
@@ -370,7 +377,7 @@ if (storedData || storedDataLeagues || storedDataFixtures) {
   const specificArrow = arrows.find(
     arrow => arrow.innerText.trim() === 'Serie A'
   );
-  console.log(specificArrow);
+  //console.log(specificArrow);
   const nestedDropdownHeading4 = document.querySelector('.has-nested-dropdown');
 
   const collapsUlNested = document.querySelector('.nested-dropdown');
@@ -402,7 +409,7 @@ async function fetchLeague(countryCode) {
     method: 'GET',
     headers: {
       'x-rapidapi-host': 'v3.football.api-sports.io',
-      'x-rapidapi-key': 'dcaae038ccee033423d5bf4a3ca07a4b',
+      'x-rapidapi-key': 'a0af909560cf747e4971386daebe7a23',
     },
   })
     .then(response => response.json())
@@ -544,3 +551,4 @@ async function fetchData() {
 //     console.log(error);
 //   }
 // }
+

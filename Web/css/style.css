@@ -189,7 +189,10 @@ main {
 
   /* novi padding zbog api-a */
   padding: 0.5rem 0.5rem 0.5rem 2.5rem;
+  transition: all 0.3s;
 }
+
+
 
 .my-league-border {
   border-bottom: 1px solid #4b4b4b;
