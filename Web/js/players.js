@@ -12,8 +12,14 @@ document.addEventListener("DOMContentLoaded", function () {
       playerNameSpan.classList.add("player-name");
       playerNameSpan.textContent = playerName;
   
-      li.appendChild(minuteSpan);
+      //li.appendChild(minuteSpan);
       li.appendChild(playerNameSpan);
+
+      li.addEventListener("click", function () {
+        console.log(`Clicked on ${playerName}`);
+        window.location.href = "./playersProfile.html";
+        // You can perform additional actions here
+      });
   
       return li;
     }
@@ -30,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
       playerNameSpan.classList.add("player-name");
       playerNameSpan.textContent = playerName;
   
-      li.appendChild(playerNameSpan);
+      //li.appendChild(playerNameSpan);
       li.appendChild(minuteSpan);
   
       return li;
@@ -54,32 +60,58 @@ document.addEventListener("DOMContentLoaded", function () {
   
     // Example scorers data for Team 1 and Team 2
     const team1Scorers = [
-      { minute: "1", playerName: "Szczęsny" },
-      { minute: "3", playerName: "Bremer" },
-      { minute: "5", playerName: "Locatelli" },
-      { minute: "6", playerName: "Danilo" },
-      { minute: "9", playerName: "Vlahović" },
-      { minute: "11", playerName: "Kostić" },
-      { minute: "15", playerName: "Yildiz" },
-      { minute: "20", playerName: "Miretti" },
-      { minute: "24", playerName: "Rugani" },
-      { minute: "25", playerName: "Rabiot" },
-      { minute: "27", playerName: "Cambiaso" }
+        { minute: 1, playerName: "Wojciech Szczesny" },
+        { minute: 23, playerName: "Carlo Pinsoglio" },
+        { minute: 36, playerName: "Mattia Perin" },
+        { minute: 2, playerName: "Mattia De Sciglio" },
+        { minute: 3, playerName: "Bremer" },
+        { minute: 4, playerName: "Federico Gatti" },
+        { minute: 6, playerName: "Danilo" },
+        { minute: 12, playerName: "Alex Sandro" },
+        { minute: 24, playerName: "Daniele Rugani" },
+        { minute: 5, playerName: "Manuel Locatelli" },
+        { minute: 10, playerName: "Paul Pogba" },
+        { minute: 11, playerName: "Filip Kostic" },
+        { minute: 16, playerName: "Weston McKennie" },
+        { minute: 17, playerName: "Samuel Iling-Junior" },
+        { minute: 20, playerName: "Fabio Miretti" },
+        { minute: 22, playerName: "Timothy Weah" },
+        { minute: 25, playerName: "Adrien Rabiot" },
+        { minute: 27, playerName: "Andrea Cambiaso" },
+        { minute: 52, playerName: "Mattia De Sciglio" },
+        { minute: 7, playerName: "Federico Chiesa" },
+        { minute: 9, playerName: "Dusan Vlahovic" },
+        { minute: 14, playerName: "Arkadiusz Milik" },
+        { minute: 15, playerName: "Kenan Yildiz" },
+        { minute: 18, playerName: "Moise Kean" },
       // Add more scorers as needed
     ];
   
     const team2Scorers = [
-      { minute: "47", playerName: "Consigli" },
-      { minute: "3", playerName: "Pedersen" },
-      { minute: "5", playerName: "Erlić" },
-      { minute: "7", playerName: "Henrique" },
-      { minute: "9", playerName: "Pinamonti" },
-      { minute: "10", playerName: "Berardi" },
-      { minute: "13", playerName: "Ferrari" },
-      { minute: "21", playerName: "Viti" },
-      { minute: "24", playerName: "Boloca" },
-      { minute: "42", playerName: "Thorstvedt" },
-      { minute: "27", playerName: "Laureinté" }
+        { minute: 1, playerName: "Wojciech Szczesny" },
+        { minute: 23, playerName: "Carlo Pinsoglio" },
+        { minute: 36, playerName: "Mattia Perin" },
+        { minute: 2, playerName: "Mattia De Sciglio" },
+        { minute: 3, playerName: "Bremer" },
+        { minute: 4, playerName: "Federico Gatti" },
+        { minute: 6, playerName: "Danilo" },
+        { minute: 12, playerName: "Alex Sandro" },
+        { minute: 24, playerName: "Daniele Rugani" },
+        { minute: 5, playerName: "Manuel Locatelli" },
+        { minute: 10, playerName: "Paul Pogba" },
+        { minute: 11, playerName: "Filip Kostic" },
+        { minute: 16, playerName: "Weston McKennie" },
+        { minute: 17, playerName: "Samuel Iling-Junior" },
+        { minute: 20, playerName: "Fabio Miretti" },
+        { minute: 22, playerName: "Timothy Weah" },
+        { minute: 25, playerName: "Adrien Rabiot" },
+        { minute: 27, playerName: "Andrea Cambiaso" },
+        { minute: 52, playerName: "Mattia De Sciglio" },
+        { minute: 7, playerName: "Federico Chiesa" },
+        { minute: 9, playerName: "Dusan Vlahovic" },
+        { minute: 14, playerName: "Arkadiusz Milik" },
+        { minute: 15, playerName: "Kenan Yildiz" },
+        { minute: 18, playerName: "Moise Kean" },
       // Add more scorers as needed
     ];
   

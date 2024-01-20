@@ -266,6 +266,7 @@ body {
 .team-scorers .player-name {
   color: #f6f6f6ff;
   font-size: 1.8rem;
+  margin-right: 0.5rem;
 }
 
 .team-scorers.team2 li{

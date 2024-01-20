@@ -35,15 +35,13 @@ document.addEventListener("DOMContentLoaded", function () {
   
     // Example scorers data for Team 1 and Team 2
     const team1Scorers = [
-      { minute: "32'", playerName: "Sigur" },
-      { minute: "33'", playerName: "Sahiti" },
-      { minute: "34'", playerName: "Livaja" },
-      { minute: "48'", playerName: "Bog" },
+      { minute: "89'", playerName: "F. Chiesa" },
+      { minute: "37'", playerName: "D.Vlahović" },
+      { minute: "15'", playerName: "D.Vlahović" },
       // Add more scorers as needed
     ];
   
     const team2Scorers = [
-      { minute: "45'", playerName: "Šetko" },
       // Add more scorers as needed
     ];
   
@@ -68,7 +66,14 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     
       // Example: Add new scorers dynamically
-      addScorerTeam1("60'", "kralj");
-      addScorerTeam2("75'", "lol");
+      //addScorerTeam1("60'", "kralj");
+      //addScorerTeam2("75'", "lol");
+  });
+
+  const team1logo = document.querySelector(".team1-icon");
+
+  team1logo.addEventListener("click", () => {
+    //console.log("Clicked");
+    window.location.href = "club.html";
   });
   

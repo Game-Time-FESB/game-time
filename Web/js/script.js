@@ -231,6 +231,7 @@ if (storedData || storedDataLeagues || storedDataFixtures) {
             // console.log('Time:', time);
 
             // console.log(time);
+            //   <p>${time}</p> INSTEAD OF FINISHED
             const fixtureListItem = document.createElement('li');
             fixtureListItem.className = 'fixture-list-item';
             fixtureListItem.innerHTML = ` 
@@ -238,13 +239,17 @@ if (storedData || storedDataLeagues || storedDataFixtures) {
                                               <div class="my-leagues-col1">
 
                                                 <div class="game-time">
-                                                  <p>${time}</p>
+                                                  <p>FINISHED</p>
                                                 </div>
                                               </div>
 
                                               <div class="my-leagues-col2">
                                                 <div class="team1-icon">
                                                   <img src="${fixture.teams.home.logo}" alt="">
+                                                  
+                                                </div>
+                                                <div class="result-text">
+                                                  <p>${fixture.score.fulltime.home}:${fixture.score.fulltime.away}</p>	
                                                 </div>
 
                                                 <div class="team2-icon">

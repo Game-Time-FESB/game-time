@@ -445,3 +445,7 @@ li.fixture-list-item {
 #dateInput::-webkit-calendar-picker-indicator {
   display: block;
 }
+
+.result-text p{
+  font-size: 3rem;
+}

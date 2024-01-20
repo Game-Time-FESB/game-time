@@ -1,81 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game</title>
-   <link rel="stylesheet" href="./css/playersProfile.css">
-</head>
-<body>
-    
-      <!-- Nav bar s arrow i search -->
-    <header class="container">
-        <div class="navbar-row">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/playersProfile.css">
+  <title>PlayerProfile</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <div class="flex-1-col">
+        <div class="navbar-row">
             <div class="back-arrow">
                 <a href="./index.html"><img src="./assets/ikone/strelica_asset.svg" alt=""></a>
               </div>
       
-          <div class="search-btn">
-            <a href="#"><img src="./assets/ikone/search.svg" alt=""></a>
-          </div>
-        </div>
-        <hr>
-            
-        <div class="my-league-content">
-            <div class="team1-icon">
-                <div class="team-info-wrapper">
-                    <img src="./assets/ikone/defaault_igrac_slika.svg" alt="">
-                    <h2>Marko Livaja</h2>
-                </div>
+            <div class="search-btn">
+                <a href="#"><img src="./assets/ikone/star empty.svg" alt=""></a>
             </div>
         </div>
 
+        <!-- New container under the header with the same color -->
+        <div class="header-container">
+            <div class="my-league my-league-border">
+            <div class="my-leagues-col1">
+                <div class="team1-icon">
+                    <img src="https://api.sofascore.app/api/v1/player/111802/image" alt="">
+                  </div>
+            </div>
 
-          <div class="  top-bar container">
-          <section class="options">
-            <ul>
-              <li> <a href="./playersProfile.html">Details</a></li>
-        
-              <li><a href="">Matches</a></li>
-            </ul>
-          </section>
-
+          </div>
         </div>
 
-    </header>
-    
- <!-- main dio za golove ekipe -->
- <main class="container">
-    <div class="goals goals-border">
-      
-          
-            <p> Club:HNK Hajduk Split</p>
-            <p>Num:10</p>
-            <p>Instagram:</p>
-            <p>Postion: Forward</p>
-            <p>Games played: 5</p>
-            <p>Goals: 8</p>
-            <p>Assists: 2</p>
-  
+        <!-- New container with Details, Table, and Matches paragraphs -->
+        <div class="details-container">
+            <a href="">Details</a>
+            <a href="">Matches</a>
+        </div>
+
+        <!-- New container with rounded edges for description -->
+
+        <div class="description-container">
+        <div class="rounded-container">
+            <h3> Paul Pogba </h3>
+            <p  class="description-text">Team: Juventus</p>   
+            <p  class="description-text">Number: 10</p> 
+            <p  class="description-text">Nationality: France</p>
+            <p  class="description-text">Age: 30</p>   
+            <h2> stats 23/24: </h2>
+            <p  class="description-text">Played: 2</p>
+            <p  class="description-text">Goals: 0</p>
+            <p  class="description-text">Assists: 0</p>     
+        </div>
+      </div>
+
+      </div>
+      <footer class="footer">
+        <section class="options">
+          <ul>
+            <li> <a href="./index.html">Matches</a></li>
+            <li><a href="./local.html">Local</a></li>
+            <li><a href="#">MyWatch</a></li>
+            <li><a href="./menu.html">Menu</a></li>
+          </ul>
+        </section>
+      </footer>
     </div>
+  </div>
 
-</main>
-
-
-<footer class=" footer container">
-    <section class="options">
-      <ul>
-        <li> <a href="./index.html">Matches</a></li>
-        <li><a href="#">Local</a></li>
-        <li><a href="#">MyWatch</a></li>
-        <li><a href="./menu.html">Menu</a></li>
-      </ul>
-    </section>
-  </footer>
-
-
-
-
+  <script type="module" src=""></script>
 </body>
+
 </html>
