@@ -35,7 +35,7 @@ if (loggedIn) {
 const heading4CountryName = document.querySelector('.country-name');
 const countryFlag = document.querySelector('.country-img');
 const countryContainer = document.querySelector('.all-leagues');
-const dropdownArrow = window.getComputedStyle(heading4CountryName, '::before');
+// const dropdownArrow = window.getComputedStyle(heading4CountryName, '::before');
 const collapsUl = document.querySelector('.collapse-ul');
 
 /////////////////////////////////// NOVO ZA API ///////////////////////////////////
@@ -90,14 +90,13 @@ async function fetchFixtures() {
 
     const data = await response.json();
 
-
     localStorage.setItem('myDataFixtures', JSON.stringify(data));
   } catch (error) {
     console.error('Error fetching games:', error);
   }
 }
 
-fetchFixtures();
+// fetchFixtures();
 
 /////////////////////////////////////////////////////////////////////////////
 // localStorage.removeItem('myDataLeagues');
@@ -120,11 +119,10 @@ if (storedData || storedDataLeagues || storedDataFixtures) {
 
   const countriesToDisplay = ['Croatia', 'England', 'Spain', 'Italy'];
   // Filter the jsonData.response array to only include the countries you want
-  
+
   const selectedCountries = jsonData.response.filter(country =>
     countriesToDisplay.includes(country.name)
   );
-  
 
   // Napravit dropdown da radi i stavit gori u funkciju
   selectedCountries.forEach(country => {
@@ -234,7 +232,7 @@ if (storedData || storedDataLeagues || storedDataFixtures) {
             //   <p>${time}</p> INSTEAD OF FINISHED
             const fixtureListItem = document.createElement('li');
             fixtureListItem.className = 'fixture-list-item';
-            fixtureListItem.innerHTML = ` 
+            fixtureListItem.innerHTML = `
                                             <div class="my-league">
                                               <div class="my-leagues-col1">
 
@@ -246,10 +244,10 @@ if (storedData || storedDataLeagues || storedDataFixtures) {
                                               <div class="my-leagues-col2">
                                                 <div class="team1-icon">
                                                   <img src="${fixture.teams.home.logo}" alt="">
-                                                  
+
                                                 </div>
                                                 <div class="result-text">
-                                                  <p>${fixture.score.fulltime.home}:${fixture.score.fulltime.away}</p>	
+                                                  <p>${fixture.score.fulltime.home}:${fixture.score.fulltime.away}</p>
                                                 </div>
 
                                                 <div class="team2-icon">
@@ -257,7 +255,7 @@ if (storedData || storedDataLeagues || storedDataFixtures) {
                                                 </div>
                                               </div>
                                             </div>
-                                          
+
                                           `;
             nestedDropdownSection.appendChild(fixtureListItem);
           });
@@ -556,4 +554,3 @@ async function fetchData() {
 //     console.log(error);
 //   }
 // }
-
