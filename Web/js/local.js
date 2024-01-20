@@ -38,7 +38,9 @@ function reverseGeocode(latitude, longitude) {
       var city = data.results[0].components.city;
       var country = data.results[0].components.country;
       // Display the city name
-      element.innerText = `${city}, ${country}`;
+      //element.innerText = `${city}, ${country}`;
+      //for now
+      element.innerText = `Split, Croatia`;
     })
     .catch(error => {
       console.error('Error fetching data:', error);

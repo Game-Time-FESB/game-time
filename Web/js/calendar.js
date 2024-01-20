@@ -19,6 +19,7 @@ dateInput.defaultValue = todayFormatted;
 const displayFormat = dd + '/' + mm;
 
 
+
 // display todays when lanched
 document.getElementById(
 
@@ -38,6 +39,18 @@ dateInput.addEventListener('change', (event) => {
     'dateText'
 
   ).innerHTML = `${newDisplayFormat}`;
+
+  const container = document.getElementById('main-container');
+  const myLeague = document.getElementById('myLeague');
   
+  if (newDisplayFormat=="16/01") {
+      container.style.display = 'none';
+      myLeague.textContent = "";
+  }
+  else {
+    myLeague.textContent = "MyMatches";
+    container.style.display = 'block';
+  }
 
 });
+

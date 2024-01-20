@@ -129,6 +129,7 @@ Border color: #4b4b4b
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    margin-top: 1.5rem;
   }
   
   .search{
@@ -152,14 +153,14 @@ Border color: #4b4b4b
   }
 
   h2{
-    margin:1rem;
+    margin:2rem;
   }
 
   .display-location{
     font-size: 1.5rem;
     background-color: #070013ff;
-    padding: 1rem 3rem;
-    border: 1rem;
+    padding: 2.5rem 3rem;
+    border: 2rem;
     border-radius: 2rem;
   }
 
