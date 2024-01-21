@@ -48,3 +48,9 @@ function reverseGeocode(latitude, longitude) {
 }
 
 getLocation();
+
+const currentLocationConainer = document.getElementById('current-location');
+
+currentLocationConainer.addEventListener('click', () =>{
+  window.location.href = "./local_List.html";
+});
