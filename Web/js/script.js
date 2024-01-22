@@ -1,7 +1,7 @@
 'use strict';
 
 //url - ask pb and change the second input variable
-sessionStorage.setItem('urlPB', '93.140.171.176');
+sessionStorage.setItem('urlPB', 'gametime.sytes.net');
 sessionStorage.setItem('portPB', '6969');
 
 // test global variabli
